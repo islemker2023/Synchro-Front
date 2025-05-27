@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Select Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              light: '#e0f7f0',
+              lighter: '#ebfaf4',
+              DEFAULT: '#00b383',
+              dark: '#009b72',
+            },
+            secondary: {
+              light: '#d0f4ea',
+              DEFAULT: '#20e3b2',
+            },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-primary-lighter min-h-screen flex flex-col justify-between font-sans">
+
+  <!-- Header -->
+
+  <h1 class="w-56 h-8 text-center mx-auto rounded-lg mt-2"><img src="/image/Icn.PNG"></h1>
+  <h2 class="text-slate-500 mt-20 text-center">Select or manage your available spaces below</h2>
+
+
+  <!-- Workspace List -->
+  <main id="workspaceContainer" class="flex-grow flex flex-col items-center px-4">
+    <div class="w-full max-w-xl flex flex-col items-center space-y-6">
+
+      <!-- Stylish Workspace Card -->
+      <div
+        class="mt-24 bg-white w-full rounded-2xl shadow-lg p-6 flex flex-col justify-between border border-slate-200 hover:shadow-2xl transition duration-300">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span
+              class="text-sm font-medium text-white bg-gradient-to-r from-green-400 to-green-500 px-3 py-1 rounded-full">
+              Admin
+            </span>
+            <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 7v4a1 1 0 001 1h3l3 5V7l-3 5H4a1 1 0 01-1-1V7z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h3a4 4 0 000-8h-3v8z" />
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-slate-800 mt-3">Computer Science - Blida</h2>
+          <p class="text-sm text-slate-500 mt-1">University workspace for CS department</p>
+        </div>
+        <button
+          class="mt-6 bg-green-400 hover:bg-green-500 text-white font-semibold py-2 rounded-lg transition shadow-md ">
+          join
+        </button>
+      </div>
+
+      <!-- Add more cards here and they’ll stack down the center -->
+    </div>
+    <!-- Bottom Left Button -->
+    <div class="flex justify-center space-x-4 mt-6">
+      <button id="newWorkspaceBtn" type="button"
+        class="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition">
+        + New Workspace
+      </button>
+      <button id="joinWorkspaceBtn" type="button"
+        class="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition">
+        Join Workspace
+      </button>
+    </div>
+  </main>
+  <!-- Modals -->
+  <div id="newWorkspaceModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl h-64">
+      <h2 class="text-xl font-bold mb-4 text-slate-800">Create New Workspace</h2>
+      <input type="text" id="workspaceNameInput" placeholder="Enter workspace name..."
+        class="w-full  px-4 py-2 rounded-lg mb-4 border-green-400" />
+      <div class="flex justify-end space-x-3">
+        <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 mt-20"
+          onclick="toggleNewModal()">Cancel</button>
+        <button id="createBtn" class="px-4 py-2 text-white rounded-lg  bg-green-400
+             hover:bg-green-500 hover:shadow-lg mt-20 w-32">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="joinWorkspaceModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 ">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl h-64">
+      <h2 class="text-xl font-bold mb-4 text-slate-800">Join Workspace</h2>
+      <input type="text" id="joinCode" placeholder="Enter invite code..."
+        class="w-full border px-4 py-2 rounded-lg mb-4 focus:ring-2 focus:ring-blue-500" />
+      <div class="flex justify-end space-x-3">
+        <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 mt-20"
+          onclick="toggleJoinModal()">Cancel</button>
+        <button class="px-4 py-2 text-white rounded-lg mt-20 w-32 bg-gradient-to-r from-green-300 to-green-400
+  hover:from-green-400 hover:to-green-500 hover:shadow-lg">Join</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const newModal = document.getElementById('newWorkspaceModal');
+    const joinModal = document.getElementById('joinWorkspaceModal');
+
+    function toggleNewModal() {
+      newModal.classList.toggle('hidden');
+      newModal.classList.toggle('flex');
+    }
+
+    function toggleJoinModal() {
+      joinModal.classList.toggle('hidden');
+      joinModal.classList.toggle('flex');
+    }
+
+    document.getElementById('newWorkspaceBtn').addEventListener('click', toggleNewModal);
+    document.getElementById('joinWorkspaceBtn').addEventListener('click', toggleJoinModal);
+
+    const confirmCreateBtn = document.getElementById('confirmCreateBtn');
+const workspaceNameInput = document.getElementById('workspaceNameInput');
+const modal = document.getElementById('workspaceModal');
+
+confirmCreateBtn.addEventListener('click', () => {
+  const workspaceName = workspaceNameInput.value.trim();
+  
+  if (workspaceName === '') {
+    alert("Please enter a workspace name.");
+    return;
+  }
+
+  // ✅ Now create the new card using the workspaceName
+  const cardContainer = document.getElementById('workspaceCards'); // make sure you have this container
+  const newCard = document.createElement('div');
+  newCard.innerHTML = `
+    <div class="mt-6 bg-white w-full rounded-2xl shadow-lg p-6 flex flex-col justify-between border border-slate-200 hover:shadow-2xl transition duration-300">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-white bg-gradient-to-r from-green-400 to-green-500 px-3 py-1 rounded-full">
+            Admin
+          </span>
+          <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v4a1 1 0 001 1h3l3 5V7l-3 5H4a1 1 0 01-1-1V7z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h3a4 4 0 000-8h-3v8z" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-slate-800 mt-3">${workspaceName}</h2>
+        <p class="text-sm text-slate-500 mt-1">University workspace for CS department</p>
+      </div>
+      <button class="mt-6 bg-gradient-to-r from-green-400 to-green-500 hover:bg-primary-dark text-white font-semibold py-2 rounded-lg transition shadow-md">
+        join
+      </button>
+    </div>
+  `;
+  cardContainer.appendChild(newCard);
+
+  modal.classList.add('hidden'); // Hide the modal
+  workspaceNameInput.value = ''; // Clear the input
+});
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announces</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#e0f7f0',
+                            lighter: '#ebfaf4',
+                            DEFAULT: '#00b383',
+                            dark: '#009b72',
+                        },
+                        secondary: {
+                            light: '#d0f4ea',
+                            DEFAULT: '#20e3b2',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-primary-lighter flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-[12.5rem] bg-white border-r border-gray-100 flex flex-col">
+        <div class="w-40 ml-3 mt-6  ">
+            <h1 class="text-primary text-2xl font-bold"><img src="/image/Icone1.JPG"></h1>
+        </div>
+        <nav class="flex-1  text-lg  py-9">
+
+            <a href="/TEACHER/TDashboard.html" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bxs-dashboard  mr-3'></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="/TEACHER/TFiles.html" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-book-open mr-3'></i>
+                <span>Files</span>
+            </a>
+            <a href="/TEACHER/TMessage.html" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-envelope mr-3'></i>
+                <span>Messages</span>
+            </a>
+            <a href="/TEACHER/TNotice.html" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-info-circle mr-3'></i>
+                <span>Announcement</span>
+            </a>
+            <a href="/TEACHER/TCalendar.html" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-calendar mr-3'></i>
+                <span>Calendar</span>
+            </a>
+            <a href="/TEACHER/TTasks.html" class="flex items-center px-5 py-3 text-gray-700 text-primary ">
+                <i class='bx bx-task mr-3'></i>
+                <span>Tasks</span>
+            </a>
+            <a href="/TEACHER/Objectives.html" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-check-circle mr-3'></i>
+                <span>Objectives</span>
+            </a>
+        </nav>
+        <div class="flex justify-center">
+            <button onclick="toggleWorkspaceModal()"
+                class="bg-primary hover:bg-primary-dark text-md text-white  mb-6 px-4 py-2 rounded-lg flex items-center">
+                <span>Ahmed Workspace</span>
+                <i class='bx bx-chevron-up'></i>
+
+            </button>
+        </div>
+        </div>
+        <!-- Workspace Modal Positioned Above Sidebar Button -->
+        <div id="workspaceModal" class="  absolute bottom-5 ml-56  w-92 [5rem]   hidden z-50">
+            <div
+                class="bg-white/95 backdrop-blur-sm border border-slate-200 rounded-2xl w-[28rem] shadow-xl p-6 relative">
+
+                <!-- Title -->
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-semibold text-slate-800">Your Workspaces</h2>
+                    <button onclick="toggleWorkspaceModal()"
+                        class="text-slate-400 hover:text-slate-600 text-xl">✕</button>
+                </div>
+
+                <!-- Workspace List -->
+                <div class="space-y-4 max-h-[50vh] overflow-y-auto pr-1">
+                    <!-- Workspace Item -->
+
+
+                    <!-- Another Workspace Item -->
+                    <div
+                        class="  flex items-center justify-between p-4 bg-white rounded-xl shadow-sm hover:shadow-md  transition">
+                        <div class="flex items-center space-x-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                                CS
+                            </div>
+                            <div>
+                                <h3 class="text-base font-medium text-slate-800">Computer Science - Blida</h3>
+                                <span class="text-xs text-gray-700 px-2 py-1 ">Role : Admin</span>
+                            </div>
+                        </div>
+                        <button class=" text-gray-800 text-md px-2 py-2 rounded-lg font-medium shadow">
+                            Switch
+                        </button>
+                    </div>
+                    <div
+                        class=" flex items-center justify-between p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center space-x-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold">
+                                ENG
+                            </div>
+                            <div>
+                                <h3 class="text-base font-medium text-slate-800">Engineering - USTHB</h3>
+                                <span class="text-xs text-gray-700  px-2 py-1 ">Role : Member</span>
+                            </div>
+                        </div>
+                        <button class="text-md text-gray-800 px-2 py-2 rounded-lg font-medium shadow">
+                            Switch
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <hr class="my-4 border-slate-200 " />
+
+                <!-- Action Button -->
+                <div class=" w-52 flex  ">
+                    <button onclick="openNewWorkspaceModal()"
+                        class=" text-gray-700  px-4 py-2.5 rounded-lg font-semibold shadow-md transition">
+                        + New Workspace
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Workspace Modal -->
+        <div id="newWorkspaceModal" class="fixed inset-0 bg-black/40 hidden justify-center items-center z-50">
+            <div class="bg-white rounded-3xl w-full max-w-md p-6 shadow-2xl">
+                <h2 class="text-xl font-bold mb-4 text-slate-800">Create New Workspace</h2>
+                <input type="text" placeholder="Enter workspace name..."
+                    class="w-full border px-4 py-2 rounded-lg mb-4" />
+                <div class="flex justify-end space-x-3">
+                    <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+                        onclick="toggleNewModal()">Cancel</button>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark">Create</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-auto">
+        <!-- Header -->
+        <header class="bg-white p-4 flex justify-between items-center shadow-lg h-20">
+            <h1 class="text-3xl font-bold text-gray-800"></h1>
+            <div class="flex items-center">
+                <button id="noticeBtn" class="p-2 mr-2 text-gray-600 rounded-full hover:bg-gray-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-5-5.917V5a2 2 0 10-4 0v.083A6.002 6.002 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m8 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                </button>
+                <div class="relative">
+                    <button id="profileButton"
+                        class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center">
+                        S
+                    </button>
+                    <div id="profileMenu" class="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50
+            transform transition-all duration-300 ease-out
+            scale-95 opacity-0 invisible translate-y-2">
+
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <!-- Profile Icon -->
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 1115 0H4.5z" />
+                            </svg>
+                            My Profile
+                        </a>
+
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <!-- Settings Icon -->
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.591 1.066c1.54-.94 3.31.83 2.37 2.37a1.724 1.724 0 001.066 2.592c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.591c.94 1.54-.83 3.31-2.37 2.37a1.724 1.724 0 00-2.592 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.591-1.066c-1.54.94-3.31-.83-2.37-2.37a1.724 1.724 0 00-1.066-2.592c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.591c-.94-1.54.83-3.31 2.37-2.37.966.59 2.175.042 2.591-1.066z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Settings
+                        </a>
+                        <hr>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-gray-100">
+                            <!-- Logout Icon -->
+                            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3H6.75A2.25 2.25 0 004.5 5.25v13.5A2.25 2.25 0 006.75 21H13.5a2.25 2.25 0 002.25-2.25V15M18.75 12H9.75m0 0l3-3m-3 3l3 3" />
+                            </svg>
+                            Logout
+                        </a>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </header>
+        <!-- Notice Dropdown Window -->
+        <!-- Notice Modal -->
+        <div id="noticeModal"
+            class="hidden absolute right-0 mt-2 w-96 mr-4 bg-white rounded-2xl shadow-xl z-50 border border-slate-200 overflow-hidden">
+            <!-- Header -->
+            <div class="flex justify-between items-center px-5 py-4 border-b bg-slate-50">
+                <h3 class="text-lg font-semibold text-slate-800">Notifications</h3>
+                <button id="closeNotice" class="text-slate-400 hover:text-slate-600 text-xl">✕</button>
+            </div>
+
+            <!-- Content -->
+            <div class="divide-y max-h-96 overflow-y-auto">
+
+                <!-- Notification Item -->
+                <div class="px-5 py-4 hover:bg-slate-50 transition">
+                    <p class="text-sm text-slate-700 mb-1"><strong>Dr. Lamine</strong> shared a new file in
+                        <em>Algorithms</em>.
+                    </p>
+                    <span class="text-xs text-slate-400">2 hours ago</span>
+                </div>
+
+                <div class="px-5 py-4 hover:bg-slate-50 transition">
+                    <p class="text-sm text-slate-700 mb-1"><strong>Delegate Yasmine</strong> sent you a message.</p>
+                    <span class="text-xs text-slate-400">4 hours ago</span>
+                </div>
+
+                <div class="px-5 py-4 hover:bg-slate-50 transition">
+                    <p class="text-sm text-slate-700 mb-1">You’ve been assigned a new task: <strong>Midterm
+                            Review</strong>.</p>
+                    <span class="text-xs text-slate-400">Today at 09:00</span>
+                </div>
+
+                <!-- Add more dynamically -->
+                <div class="px-5 py-4 hover:bg-slate-50 transition">
+                    <p class="text-sm text-slate-700 mb-1">A new objective has been added to the project board.</p>
+                    <span class="text-xs text-slate-400">Yesterday</span>
+                </div>
+
+            </div>
+        </div>
+        </div>
+
+        <!-- Chatbot Toggle Button -->
+        <button id="chatbotToggle"
+            class="fixed bottom-6 right-6 bg-primary hover:bg-primary-dark text-white p-4 rounded-full shadow-lg z-50 flex items-center justify-center ">
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path fill-rule="evenodd"
+                    d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z"
+                    clip-rule="evenodd" />
+            </svg>
+
+
+        </button>
+        <!-- Chat Window -->
+        <div id="chatbotWindow"
+            class="hidden fixed bottom-24 right-6 w-80 h-80 max-w-full backdrop-blur-md bg-white/80 rounded-3xl shadow-2xl border border-emerald-100 overflow-hidden flex flex-col z-50">
+
+            <!-- Header -->
+            <div class="bg-emerald-500/90 text-white px-4 py-3 flex items-center justify-between">
+                <span class="font-semibold text-base">Chat Assistant</span>
+                <button id="closeChatbot"
+                    class="text-white text-lg hover:text-gray-200 font-bold leading-none">&times;</button>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="flex-1 px-4 py-3 space-y-3 overflow-y-auto h-64 bg-gradient-to-b from-white/70 to-gray-100">
+                <!-- Bot Message -->
+                <div
+                    class="bg-white border border-emerald-100 text-gray-800 text-sm px-3 py-2 rounded-2xl rounded-tl-none shadow-sm w-fit max-w-[80%]">
+                    Hello 👋 Need any help today?
+                </div>
+
+                <!-- User Message -->
+                <div
+                    class="bg-emerald-500 text-white text-sm px-3 py-2 rounded-2xl rounded-tr-none shadow-md w-fit max-w-[80%] ml-auto">
+                    Yes, I have a question.
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="border-t border-gray-200 bg-white/80 backdrop-blur-md p-3 flex items-center gap-2">
+                <input type="text" placeholder="Type your message..."
+                    class="flex-1 bg-white/70 text-sm px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-300" />
+                <button class="bg-emerald-500 hover:bg-emerald-600 text-white p-2 rounded-full shadow-md transition">
+                    ➤
+                </button>
+            </div>
+        </div>
+        <main>
+            <main class="w-full max-w-4xl">
+                <h1 class="text-3xl font-bold mb-6 ml-2">Teacher Tasks</h1>
+
+                <!-- Task creation form -->
+                <form id="task-form" class="bg-white rounded-xl shadow p-6 ml-10 w-full">
+                    <div class="mb-4">
+                        <label for="delegate-address" class="block mb-1 font-medium">Delegate Address</label>
+                        <input type="text" id="delegate-address" placeholder="Delegate username or ID" required
+                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="task-title" class="block mb-1 font-medium">Task Title</label>
+                        <input type="text" id="task-title" placeholder="Title of the task" required
+                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="task-desc" class="block mb-1 font-medium">Task Description</label>
+                        <textarea id="task-desc" rows="3" placeholder="Describe the task in detail" required
+                            class="w-full border border-gray-300 rounded px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="task-deadline" class="block mb-1 font-medium">Deadline</label>
+                        <input type="date" id="task-deadline" required
+                            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400" />
+                    </div>
+                    <button type="submit"
+                        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded transition">
+                        Create Task
+                    </button>
+                </form>
+
+                <!-- Task list container -->
+                <div id="task-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 ml-9 mt-4" aria-live="polite"
+                    aria-relevant="additions"></div>
+            </main>
+        </main>
+        <script>
+            const toggleBtn = document.getElementById("chatbotToggle");
+            const chatbotWindow = document.getElementById("chatbotWindow");
+            const closeBtn = document.getElementById("closeChatbot");
+
+            toggleBtn.addEventListener("click", () => {
+                chatbotWindow.classList.toggle("hidden");
+            });
+
+            closeBtn.addEventListener("click", () => {
+                chatbotWindow.classList.add("hidden");
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
+                    profileMenu.classList.add('opacity-0', 'scale-95', 'translate-y-2');
+                    setTimeout(() => {
+                        profileMenu.classList.add('invisible');
+                    }, 300);
+                    profileMenu.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+                }
+            });
+            const profileButton = document.getElementById('profileButton');
+            const profileMenu = document.getElementById('profileMenu');
+
+            profileButton.addEventListener('click', () => {
+                const isHidden = profileMenu.classList.contains('invisible');
+
+                if (isHidden) {
+                    profileMenu.classList.remove('invisible', 'opacity-0', 'scale-95', 'translate-y-2');
+                    profileMenu.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+                } else {
+                    profileMenu.classList.add('opacity-0', 'scale-95', 'translate-y-2');
+                    setTimeout(() => {
+                        profileMenu.classList.add('invisible');
+                    }, 300);
+                    profileMenu.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
+                    profileMenu.classList.add('opacity-0', 'scale-95', 'translate-y-2');
+                    setTimeout(() => {
+                        profileMenu.classList.add('invisible');
+                    }, 300);
+                    profileMenu.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+                }
+            });
+            function toggleWorkspaceModal() {
+                const modal = document.getElementById('workspaceModal');
+                modal.classList.toggle('hidden');
+                modal.classList.toggle('flex');
+            }
+
+            function openNewWorkspaceModal() {
+                toggleWorkspaceModal(); // hide current modal
+                toggleNewModal();       // show new modal
+            }
+
+            function toggleNewModal() {
+                const modal = document.getElementById('newWorkspaceModal');
+                modal.classList.toggle('hidden');
+                modal.classList.toggle('flex');
+            }
+            document.addEventListener("DOMContentLoaded", () => {
+                const NoticeBtn = document.querySelector("noticeBtn");
+                const noticeModal = document.getElementById("noticeModal");
+                const closeNotice = document.getElementById("closeNotice");
+
+                noticeBtn.addEventListener('click', () => {
+                    noticeModal.classList.toggle('hidden');
+                });
+
+                closeNotice.addEventListener('click', () => {
+                    noticeModal.classList.add('hidden');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!noticeModal.contains(e.target) && !NoticeBtn.contains(e.target)) {
+                        noticeModal.classList.add('hidden');
+                    }
+                });
+            });
+            const taskForm = document.getElementById("task-form");
+            const taskGrid = document.getElementById("task-grid");
+
+            // Helper: determine status based on deadline and today
+            function getStatus(deadline) {
+                const today = new Date();
+                const dl = new Date(deadline);
+                if (dl < today) return "overdue";
+                return "pending";
+            }
+
+            // Render tasks stored in localStorage
+            function renderTeacherTasks() {
+                taskGrid.innerHTML = "";
+                const tasks = JSON.parse(localStorage.getItem("teacherTasks")) || [];
+                tasks.forEach(task => {
+                    // Update status dynamically in case deadline passed
+                    task.status = getStatus(task.deadline);
+
+                    let borderColor = "border-yellow-400";
+                    let statusBg = "bg-yellow-200";
+                    let statusText = "text-yellow-800";
+
+                    if (task.status === "completed") {
+                        borderColor = "border-green-500";
+                        statusBg = "bg-green-200";
+                        statusText = "text-green-800";
+                    } else if (task.status === "overdue") {
+                        borderColor = "border-red-500";
+                        statusBg = "bg-red-200";
+                        statusText = "text-red-800";
+                    }
+
+                    const card = document.createElement("div");
+                    card.className = `task-card hover:shadow-2xl animate-pop bg-white rounded-xl shadow p-5 border-l-4 ${borderColor}`;
+                    card.setAttribute("data-status", task.status);
+
+                    card.innerHTML = `
+                        <h3 class="text-lg font-bold mb-1">${task.title}</h3>
+                        <p class="mb-2 text-gray-700">${task.description}</p>
+                        <p class="mb-2"><strong>Delegate:</strong> ${task.delegate}</p>
+                        <p class="mb-2"><strong>Deadline:</strong> ${task.deadline}</p>
+                        <span class="inline-block px-3 py-1 rounded-full font-semibold ${statusBg} ${statusText} text-xs uppercase">${task.status}</span>
+                        `;
+
+                    taskGrid.appendChild(card);
+                });
+
+                // Save updated statuses back to localStorage
+                localStorage.setItem("teacherTasks", JSON.stringify(tasks));
+            }
+
+            taskForm.addEventListener("submit", e => {
+                e.preventDefault();
+
+                const delegate = document.getElementById("delegate-address").value.trim();
+                const title = document.getElementById("task-title").value.trim();
+                const description = document.getElementById("task-desc").value.trim();
+                const deadline = document.getElementById("task-deadline").value;
+
+                const newTask = {
+                    id: "task_" + Date.now(),
+                    delegate,
+                    title,
+                    description,
+                    deadline,
+                    status: getStatus(deadline)
+                };
+
+                const tasks = JSON.parse(localStorage.getItem("teacherTasks")) || [];
+                tasks.push(newTask);
+                localStorage.setItem("teacherTasks", JSON.stringify(tasks));
+
+                taskForm.reset();
+                renderTeacherTasks();
+            });
+
+            // Initial render
+            renderTeacherTasks();
+           
+        </script>
+
+</body>
+
+</html>

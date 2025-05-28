@@ -2,7 +2,6 @@
 
 {{ 'Tasks' }}
 {% block extra_head %}{% endblock %}
-
 {% block_content %}
         <main class="flex-1 p-6  overflow-y-auto">
             <h1 class="text-2xl font-bold mb-6">My Tasks</h1>
@@ -23,7 +22,10 @@
                 <!-- Task Card -->
                 <div class="hover:shadow-xl task-card animate-pop bg-white rounded-xl shadow p-5 border-l-4 border-yellow-400"
                     data-status="pending">
-                    <h2 class="text-lg font-semibold text-gray-800">Upload Class Notes</h2>
+                    <div class="flex justify-between items-center ">
+                       <h2 class="text-lg font-semibold text-gray-800">Upload Class Notes</h2>
+                       <input type="checkbox" class="w-4 h-4 mr-2" />
+                    </div>
                     <p class="text-sm text-gray-600 mt-2">Upload all the notes from this week’s math lecture to the
                         platform.</p>
                     <div class="flex justify-between items-center mt-4">
@@ -36,7 +38,10 @@
                 <!-- Completed Task -->
                 <div class="hover:shadow-xl task-card animate-pop bg-white rounded-xl shadow p-5 border-l-4 border-green-400"
                     data-status="completed">
-                    <h2 class="text-lg font-semibold text-gray-800">Submit Attendance List</h2>
+                    <div class="flex justify-between items-center">
+                       <h2 class="text-lg font-semibold text-gray-800">Submit Attendance List</h2>
+                        <input type="checkbox" class="w-4 h-4 mr-2 " />
+                    </div>
                     <p class="text-sm text-gray-600 mt-2">The list was submitted to the teacher last Friday.</p>
                     <div class="flex justify-between items-center mt-4">
                         <span class="text-sm text-gray-500">Deadline: <strong>May 20</strong></span>
@@ -48,7 +53,10 @@
                 <!-- Overdue Task -->
                 <div class="hover:shadow-lg task-card animate-pop bg-white rounded-xl shadow p-5 border-l-4 border-red-400"
                     data-status="overdue">
-                    <h2 class="text-lg font-semibold text-gray-800">Create Exam Revision Guide</h2>
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-lg font-semibold text-gray-800">Create Exam Revision Guide</h2>
+                        <input type="checkbox" class="w-4 h-4 mr-2 " />
+                    </div>
                     <p class="text-sm text-gray-600 mt-2">Organize key points and examples for the upcoming exam.</p>
                     <div class="flex justify-between items-center mt-4">
                         <span class="text-sm text-gray-500">Deadline: <strong>May 21</strong></span>
@@ -58,34 +66,10 @@
             </div>
         </main>
 
-      {% endblock %}  
-      {% block js %}
+        {% endblock %}
+        {% block js %}
         <script>
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const taskCards = document.querySelectorAll('.task-card');
 
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const filter = button.dataset.filter;
-
-                    taskCards.forEach(card => {
-                        const status = card.dataset.status;
-
-                        if (filter === "all" || filter === status) {
-                            card.classList.remove("hidden");
-
-                            // ✅ Reset and trigger animation
-                            card.classList.remove("animate-pop");
-                            void card.offsetWidth; // force reflow
-                            card.classList.add("animate-pop");
-
-                        } else {
-                            card.classList.add("hidden");
-                        }
-                    });
-                });
-            });
-            
         </script>
         {% endblock %}
 </body>

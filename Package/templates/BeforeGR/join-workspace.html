@@ -28,16 +28,66 @@
   </script>
 </head>
 
-<body class="bg-primary-lighter min-h-screen flex flex-col justify-between font-sans">
+<body class="bg-primary-lighter min-h-screen flex flex-col justify-between font-sans"   style="background-color: #F2FFF5;" class="min-h-screen flex flex-col justify-between font-sans">
+>
 
   <!-- Header -->
-
-  <h1 class="w-56 h-8 text-center mx-auto rounded-lg mt-2"><img src="/image/Icn.PNG"></h1>
-  <h2 class="text-slate-500 mt-20 text-center">Select or manage your available spaces below</h2>
-
-
-  <!-- Workspace List -->
+  <!--Workspace List -->
   <main id="workspaceContainer" class="flex-grow flex flex-col items-center px-4">
+    <div  class="relative flex justify-between items-start w-full px-8 pt-2">
+     
+                <div class="w-48"></div>
+
+      <!-- Centered Image -->
+      <div class="flex justify-center w-full absolute left- top-6">
+        <img src="photo_2025-05-24_21-46-06.jpg" alt="Workspace Image" class="w-48 h-auto rounded-xl" />
+      </div>
+                 <div class="absolute top-1 right-3 ">
+                    <button id="profileButton"
+                        class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center">
+                        S
+                    </button>
+                    <div id="profileMenu" class="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50
+            transform transition-all duration-300 ease-out
+            scale-95 opacity-0 invisible translate-y-2">
+
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <!-- Profile Icon -->
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 1115 0H4.5z" />
+                            </svg>
+                            My Profile
+                        </a>
+
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <!-- Settings Icon -->
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.591 1.066c1.54-.94 3.31.83 2.37 2.37a1.724 1.724 0 001.066 2.592c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.591c.94 1.54-.83 3.31-2.37 2.37a1.724 1.724 0 00-2.592 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.591-1.066c-1.54.94-3.31-.83-2.37-2.37a1.724 1.724 0 00-1.066-2.592c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.591c-.94-1.54.83-3.31 2.37-2.37.966.59 2.175.042 2.591-1.066z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Settings
+                        </a>
+                        <hr>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-gray-100">
+                            <!-- Logout Icon -->
+                            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3H6.75A2.25 2.25 0 004.5 5.25v13.5A2.25 2.25 0 006.75 21H13.5a2.25 2.25 0 002.25-2.25V15M18.75 12H9.75m0 0l3-3m-3 3l3 3" />
+                            </svg>
+                            Logout
+                        </a>
+                    </div>
+
+                </div>
+
+    </div>
+    
     <div class="w-full max-w-xl flex flex-col items-center space-y-6">
 
       <!-- Stylish Workspace Card -->
@@ -46,20 +96,15 @@
         <div>
           <div class="flex items-center justify-between mb-2">
             <span
-              class="text-sm font-medium text-white bg-gradient-to-r from-green-400 to-green-500 px-3 py-1 rounded-full">
+              class="text-sm font-medium  px-3 py-1 rounded-full bg-indigo-100 text-indigo-700">
               Admin
             </span>
-            <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M3 7v4a1 1 0 001 1h3l3 5V7l-3 5H4a1 1 0 01-1-1V7z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h3a4 4 0 000-8h-3v8z" />
-            </svg>
           </div>
           <h2 class="text-xl font-semibold text-slate-800 mt-3">Computer Science - Blida</h2>
           <p class="text-sm text-slate-500 mt-1">University workspace for CS department</p>
         </div>
         <button
-          class="mt-6 bg-green-400 hover:bg-green-500 text-white font-semibold py-2 rounded-lg transition shadow-md ">
+          class="mt-6 bg-primary hover:bg-primary-dark text-white font-semibold py-2 rounded-lg transition shadow-md ">
           join
         </button>
       </div>
@@ -69,11 +114,11 @@
     <!-- Bottom Left Button -->
     <div class="flex justify-center space-x-4 mt-6">
       <button id="newWorkspaceBtn" type="button"
-        class="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition">
+        class="bg-green-100 text-green-800 hover:bg-green-200 font-semibold py-2 px-6 rounded-xl border-primary shadow-md transition">
         + New Workspace
       </button>
       <button id="joinWorkspaceBtn" type="button"
-        class="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition">
+        class="bg-green-100 text-green-800 hover:bg-green-200  font-semibold py-2 px-6 rounded-xl shadow-md transition">
         Join Workspace
       </button>
     </div>
@@ -109,6 +154,23 @@
 
   <!-- Script -->
   <script>
+     const profileButton = document.getElementById('profileButton');
+            const profileMenu = document.getElementById('profileMenu');
+
+            profileButton.addEventListener('click', () => {
+                const isHidden = profileMenu.classList.contains('invisible');
+
+                if (isHidden) {
+                    profileMenu.classList.remove('invisible', 'opacity-0', 'scale-95', 'translate-y-2');
+                    profileMenu.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+                } else {
+                    profileMenu.classList.add('opacity-0', 'scale-95', 'translate-y-2');
+                    setTimeout(() => {
+                        profileMenu.classList.add('invisible');
+                    }, 300);
+                    profileMenu.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+                }
+            });
     const newModal = document.getElementById('newWorkspaceModal');
     const joinModal = document.getElementById('joinWorkspaceModal');
 

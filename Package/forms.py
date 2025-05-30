@@ -1,10 +1,10 @@
-from flask_login import current_user
+from flask import session
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileSize
 from sqlalchemy.orm import joinedload
 from wtforms import EmailField, PasswordField, SubmitField, BooleanField
 from wtforms.fields.choices import SelectField
-from wtforms.fields.datetime import DateField
+from wtforms.fields.datetime import DateField, TimeField
 from wtforms.fields.form import FormField
 from wtforms.fields.list import FieldList
 from wtforms.fields.simple import StringField, FileField, TextAreaField
@@ -64,6 +64,7 @@ class UpdateProfileForm(FlaskForm):
 
     def validate_email(self, email):
         # Check if email is already taken by another user
+        current_user = session.get('user_id')
         user = Users.query.filter(
             Users.email == email.data.lower(),
             Users.user_id != current_user.user_id
@@ -107,6 +108,8 @@ class SubObjectiveForm(FlaskForm):
     """Form for individual sub-objectives"""
     title = StringField('Title', validators=[DataRequired(), Length(max=200)])
     description = TextAreaField('Description', validators=[Optional(), Length(max=500)])
+    check = BooleanField('check')
+
 
 
 class CreateObjectiveForm(FlaskForm):
@@ -152,3 +155,40 @@ class EditObjectiveForm(FlaskForm):
                            validators=[DataRequired()])
     sub_objectives = FieldList(FormField(SubObjectiveForm), min_entries=0, max_entries=10)
 
+
+class AnnouncementForm(FlaskForm):
+    title = TextAreaField('Title', validators=[DataRequired(), Length(max=200)])
+    description = TextAreaField('Message', validators=[Optional(), Length(max=1000)])
+    submit = SubmitField('Add announcement')
+
+
+class InviteForm(FlaskForm):
+    email = EmailField('Email Address', validators=[DataRequired(), Email()])
+    role = SelectField('Role', choices=[
+        ('admin', 'Admin'),
+        ('teacher', 'Teacher'),
+        ('delegate', 'Delegate')
+    ])
+    submit = SubmitField('Add member')
+
+
+
+class CreateEventForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired(), Length(max=255)])
+    event_date = DateField('Event Date', validators=[DataRequired()])
+    event_time = TimeField('Event Time', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[Optional(), Length(max=1000)])
+    submit = SubmitField('Save Event')
+
+class CreateWorkspaceForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(), Length(max=255)])
+    description = DateField('Description', validators=[DataRequired()])
+    submit = SubmitField('Create workspace')
+class JoinWorkspaceForm(FlaskForm):
+    invite_code = StringField('Name', validators=[DataRequired(), Length(max=255)])
+
+class Messages(FlaskForm):
+    to_email = StringField('To', validators=[DataRequired(), Email()])
+    subject = StringField('Subject', validators=[DataRequired()])
+    message_body = TextAreaField('Message', validators=[DataRequired()])
+    submit = SubmitField('Send')

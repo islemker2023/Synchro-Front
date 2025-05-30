@@ -1,0 +1,444 @@
+{% extends layouts/Theaderaside.html %}
+{{ 'Teacher Objectives' }}
+{% block extra_head %}{% endblock %}
+{% block_content %}
+<main>
+    <div class="p-6">
+        <h1 class="text-3xl font-semibold mb-9">My Objectives</h1>
+
+        <!-- Overview Stats Boxes -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="flex hover:shadow-2xl flex-col bg-white shadow-md rounded-2xl p-4">
+                <div class="flex items-center space-x-2 mb-2">
+                    <i class='bx bx-target-lock text-2xl text-blue-600'></i>
+                    <p class="text-gray-600 font-medium">Total Objectives</p>
+                    <i class='bx bx-trending-up mr-1'></i>
+
+                </div>
+                <h2 class="text-2xl font-bold text-blue-600">25</h2>
+            </div>
+            <div class="flex hover:shadow-2xl flex-col bg-white shadow-md rounded-2xl p-4">
+                <div class="flex items-center space-x-2 mb-2">
+                    <i class='bx bx-check-circle text-2xl text-green-600'></i>
+                    <p class="text-gray-600">Completed</p>
+                    <i class='bx bx-trending-up mr-1'></i>
+                </div>
+                <h2 class="text-2xl font-bold text-green-600">15</h2>
+            </div>
+            <div class="flex flex-col hover:shadow-2xl bg-white shadow-md rounded-2xl p-4">
+                <div class="flex items-center space-x-2 mb-2">
+                    <i class='bx bx-time text-2xl text-yellow-600'></i>
+                    <p class="text-gray-600">In Progress</p>
+                    <i class='bx bx-time-five mr-1'></i>
+                </div>
+                <h2 class="text-2xl font-bold text-yellow-500">10</h2>
+            </div>
+        </div>
+
+        <!-- All Objectives -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-primary pb-2">All Objectives
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Objective Card 1 -->
+                <div
+                    class="objective-card bg-white shadow-md rounded-2xl p-4 space-y-2 cursor-pointer transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Improve Student Engagement</h3>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">In
+                            Progress</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Establish a comprehensive online learning management system for all
+                        courses.</p>
+                    <div class="flex gap-6 text-sm text-gray-600 mb-4">
+                        <span><strong>Admin: </strong>Michael Davis</span>
+                        <span><strong>Date: </strong>May 3, 2024</span>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-500" style="width: 75%;"></div>
+                    </div>
+                    <p class="text-sm text-right text-gray-600">75%</p>
+
+                    <!-- Hidden Details -->
+                    <div class="hidden mt-3 space-y-2 details">
+                        <p class="font-semibold text-gray-700">To-Do List:</p>
+                        <ul class="list-none text-sm text-gray-600 space-y-2">
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task2-1" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task2-1" class="line-through text-gray-400">Research platform
+                                    options</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task2-2" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task2-2" class="line-through text-gray-400">Get approval from
+                                    administration</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task2-3" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task2-3" class="line-through text-gray-400">Configure user accounts</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task2-4"
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task2-4">Train teaching staff</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Objective Card 2 -->
+                <div
+                    class="objective-card bg-white shadow-md rounded-2xl p-4 space-y-2 cursor-pointer transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Improve Student Engagement</h3>
+                        <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">overdue</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Implement automated grading and feedback system for better student
+                        evaluation.</p>
+                    <div class="flex gap-6 text-sm text-gray-600 mb-4">
+                        <span><strong>Admin :</strong>Sabrina Johnson</span>
+                        <span><strong>Date :</strong>February 13, 2024</span>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+                        <div class="h-full bg-red-500" style="width: 20%;"></div>
+                    </div>
+                    <p class="text-sm text-right text-gray-600">20%</p>
+
+                    <!-- Hidden Details -->
+                    <div class="hidden mt-3 space-y-2 details">
+                        <p class="font-semibold text-gray-700">To-Do List:</p>
+                        <ul class="list-none text-sm text-gray-600 space-y-2">
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task3-1" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task3-1" class="line-through text-gray-400">Define assessment
+                                    criteria</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task3-2"
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task3-2">Design question database</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task3-3"
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task3-3">Develop auto-grading algorithms</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task3-4"
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task3-4">Test with pilot group</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task3-5"
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task3-5">Full system deployment</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Objective Card 3 -->
+                <div
+                    class="objective-card bg-white shadow-md rounded-2xl p-4 space-y-2 cursor-pointer transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Campus Infrastructure Upgrade</h3>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">In
+                            Progress</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Modernize campus facilities including Wi-Fi, laboratories, and
+                        study spaces.</p>
+                    <div class="flex gap-6 text-sm text-gray-600 mb-4">
+                        <span><strong>Admin: </strong>Michael Davis</span>
+                        <span><strong>Date: </strong>February 28, 2024</span>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+                        <div class="h-full bg-yellow-500" style="width: 67%;"></div>
+                    </div>
+                    <p class="text-sm text-right text-gray-600">67%</p>
+
+                    <!-- Hidden Details -->
+                    <div class="hidden mt-3 space-y-2 details">
+                        <p class="font-semibold text-gray-700">To-Do List:</p>
+                        <ul class="list-none text-sm text-gray-600 space-y-2">
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task4-1" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task4-1" class="line-through text-gray-400">Conduct infrastructure
+                                    audit</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task4-2" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task4-2">Prepare budget proposal</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task4-3" ckcked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task4-3">Get administrative approval</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task4-4" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task4-4">Select contractors</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task4-5"
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task4-5">Begin construction phase</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task4-5"
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task4-5">Begin construction phase</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Objective Card 4 -->
+                <div
+                    class="objective-card bg-white shadow-md rounded-2xl p-4 space-y-2 cursor-pointer transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Technology Integration</h3>
+                        <span
+                            class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Completed</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Enhance counseling, career guidance, and mental health support for
+                        students.</p>
+                    <div class="flex gap-6 text-sm text-gray-600 mb-4">
+                        <span><strong>Admin: </strong>Michael Davis</span>
+                        <span><strong>Date: </strong>February 28, 2024</span>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-600" style="width: 100%;"></div>
+                    </div>
+                    <p class="text-sm text-right text-gray-600">100%</p>
+
+                    <!-- Hidden Details -->
+                    <div class="hidden mt-3 space-y-2 details">
+                        <p class="font-semibold text-gray-700">To-Do List:</p>
+                        <ul class="list-none text-sm text-gray-600 space-y-2">
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task5-1" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task5-1" class="line-through text-gray-400">Hire qualified
+                                    counselors</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task5-2" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task5-2" class="line-through text-gray-400">Set up counseling rooms</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task5-3" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task5-3" class="line-through text-gray-400">Create online booking
+                                    system</label>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <input type="checkbox" id="task5-4" checked
+                                    class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2">
+                                <label for="task5-4">Launch awareness campaigns</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- New Objective Modal -->
+<div id="newObjectiveModal" class="fixed inset-0 bg-black/50 hidden justify-center items-center z-50">
+    <div class="bg-white rounded-3xl w-full max-w-2xl p-6 shadow-2xl mx-4">
+        <h2 class="text-2xl font-bold mb-6 text-slate-800">Create New Objective</h2>
+
+        <form class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Objective Title</label>
+                <input type="text" placeholder="Enter objective title..."
+                    class="w-full border border-gray-300 px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <textarea placeholder="Describe the objective..." rows="3"
+                    class="w-full border border-gray-300 px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Assigned By</label>
+                    <input type="text" placeholder="Name"
+                        class="w-full border border-gray-300 px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Due Date</label>
+                    <input type="date"
+                        class="w-full border border-gray-300 px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" />
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Tasks</label>
+                <div id="tasksList" class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <input type="text" placeholder="Add a task..."
+                            class="flex-1 border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" />
+                        <button type="button" onclick="removeTask(this)" class="text-red-500 hover:text-red-700 px-2">
+                            <i class='bx bx-trash'></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="button" onclick="addNewTask()"
+                    class="mt-2 text-primary hover:text-primary-dark font-medium flex items-center space-x-1">
+                    <i class='bx bx-plus'></i>
+                    <span>Add Task</span>
+                </button>
+            </div>
+        </form>
+
+        <div class="flex justify-end space-x-3 mt-6">
+            <button class="px-6 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg font-medium transition"
+                onclick="closeNewObjectiveModal()">Cancel</button>
+            <button
+                class="px-6 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg font-medium transition">Create
+                Objective</button>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock %}
+{% block js %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+
+        const taskForm = document.getElementById("task-form");
+        const taskGrid = document.getElementById("task-grid");
+
+        function getStatus(deadline) {
+            const today = new Date();
+            const dl = new Date(deadline);
+            if (dl < today) return "overdue";
+            return "pending";
+        }
+
+        function renderTeacherTasks() {
+            taskGrid.innerHTML = "";
+            const tasks = JSON.parse(localStorage.getItem("teacherTasks")) || [];
+            tasks.forEach(task => {
+                task.status = getStatus(task.deadline);
+
+                let borderColor = "border-yellow-400";
+                let statusBg = "bg-yellow-200";
+                let statusText = "text-yellow-800";
+
+                if (task.status === "completed") {
+                    borderColor = "border-green-500";
+                    statusBg = "bg-green-200";
+                    statusText = "text-green-800";
+                } else if (task.status === "overdue") {
+                    borderColor = "border-red-500";
+                    statusBg = "bg-red-200";
+                    statusText = "text-red-800";
+                }
+
+                const card = document.createElement("div");
+                card.className = `task-card hover:shadow-2xl animate-pop bg-white rounded-xl shadow p-5 border-l-4 ${borderColor}`;
+                card.setAttribute("data-status", task.status);
+
+                card.innerHTML = `
+                    <h3 class="text-lg font-bold mb-1">${task.title}</h3>
+                    <p class="mb-2 text-gray-700">${task.description}</p>
+                    <p class="mb-2"><strong>Delegate:</strong> ${task.delegate}</p>
+                    <p class="mb-2"><strong>Deadline:</strong> ${task.deadline}</p>
+                    <span class="inline-block px-3 py-1 rounded-full font-semibold ${statusBg} ${statusText} text-xs uppercase">${task.status}</span>
+                `;
+
+                taskGrid.appendChild(card);
+            });
+
+            document.querySelectorAll(".objective-card").forEach(card => {
+                card.addEventListener("click", function (e) {
+                    // Prevent toggle if user clicked inside an interactive element
+                    const ignoredTags = ["input", "label", "svg", "path", "button", "select", "textarea"];
+                    const isInsideIgnored = ignoredTags.includes(e.target.tagName.toLowerCase()) || e.target.closest("input, label, button");
+
+                    if (!isInsideIgnored) {
+                        const details = this.querySelector(".details");
+                        if (details) {
+                            details.classList.toggle("hidden");
+                        }
+                    }
+                });
+            });
+
+            localStorage.setItem("teacherTasks", JSON.stringify(tasks));
+        }
+
+        if (taskForm) {
+            taskForm.addEventListener("submit", e => {
+                e.preventDefault();
+
+                const delegate = document.getElementById("delegate-address").value.trim();
+                const title = document.getElementById("task-title").value.trim();
+                const description = document.getElementById("task-desc").value.trim();
+                const deadline = document.getElementById("task-deadline").value;
+
+                const newTask = {
+                    id: "task_" + Date.now(),
+                    delegate,
+                    title,
+                    description,
+                    deadline,
+                    status: getStatus(deadline)
+                };
+
+                const tasks = JSON.parse(localStorage.getItem("teacherTasks")) || [];
+                tasks.push(newTask);
+                localStorage.setItem("teacherTasks", JSON.stringify(tasks));
+
+                taskForm.reset();
+                renderTeacherTasks();
+            });
+        }
+        document.querySelectorAll(".objective-card").forEach(card => {
+            card.addEventListener("click", function (e) {
+                // Prevent toggle if user clicked inside an interactive element
+                const ignoredTags = ["input", "label", "svg", "path", "button", "select", "textarea"];
+                const isInsideIgnored = ignoredTags.includes(e.target.tagName.toLowerCase()) || e.target.closest("input, label, button");
+
+                if (!isInsideIgnored) {
+                    const details = this.querySelector(".details");
+                    if (details) {
+                        details.classList.toggle("hidden");
+                    }
+                }
+            });
+        });
+
+
+        renderTeacherTasks(); // ✅ ensure this runs only when DOM is loaded
+    });
+
+
+</script>
+{% endblock %}
+
+</body>
+
+</html>

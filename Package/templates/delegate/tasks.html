@@ -1,0 +1,77 @@
+{% extends layouts/headeraside.html %}
+
+{{ 'Tasks' }}
+{% block extra_head %}{% endblock %}
+{% block_content %}
+        <main class="flex-1 p-6  overflow-y-auto">
+            <h1 class="text-2xl font-bold mb-6">My Tasks</h1>
+            <!-- Filter Buttons -->
+            <div class="mb-6 flex flex-wrap gap-3">
+                <button data-filter="all"
+                    class="filter-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-1 px-4 rounded-full transition">All</button>
+                <button data-filter="pending"
+                    class="filter-btn bg-yellow-100 hover:bg-yellow-200 text-yellow-800 font-medium py-1 px-4 rounded-full transition">Pending</button>
+                <button data-filter="completed"
+                    class="filter-btn bg-green-100 hover:bg-green-200 text-green-800 font-medium py-1 px-4 rounded-full transition">Completed</button>
+                <button data-filter="overdue"
+                    class="filter-btn bg-red-100 hover:bg-red-200 text-red-800 font-medium py-1 px-4 rounded-full transition">Overdue</button>
+            </div>
+
+            
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Task Card -->
+                <div class="hover:shadow-xl task-card animate-pop bg-white rounded-xl shadow p-5 border-l-4 border-yellow-400"
+                    data-status="pending">
+                    <div class="flex justify-between items-center ">
+                       <h2 class="text-lg font-semibold text-gray-800">Upload Class Notes</h2>
+                       <input type="checkbox" class="w-4 h-4 mr-2" />
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">Upload all the notes from this week’s math lecture to the
+                        platform.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-sm text-gray-500">Deadline: <strong>May 28</strong></span>
+                        <span
+                            class="text-xs bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full font-medium">Pending</span>
+                    </div>
+                </div>
+
+                <!-- Completed Task -->
+                <div class="hover:shadow-xl task-card animate-pop bg-white rounded-xl shadow p-5 border-l-4 border-green-400"
+                    data-status="completed">
+                    <div class="flex justify-between items-center">
+                       <h2 class="text-lg font-semibold text-gray-800">Submit Attendance List</h2>
+                        <input type="checkbox" class="w-4 h-4 mr-2 " />
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">The list was submitted to the teacher last Friday.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-sm text-gray-500">Deadline: <strong>May 20</strong></span>
+                        <span
+                            class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded-full font-medium">Completed</span>
+                    </div>
+                </div>
+
+                <!-- Overdue Task -->
+                <div class="hover:shadow-lg task-card animate-pop bg-white rounded-xl shadow p-5 border-l-4 border-red-400"
+                    data-status="overdue">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-lg font-semibold text-gray-800">Create Exam Revision Guide</h2>
+                        <input type="checkbox" class="w-4 h-4 mr-2 " />
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">Organize key points and examples for the upcoming exam.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-sm text-gray-500">Deadline: <strong>May 21</strong></span>
+                        <span class="text-xs bg-red-200 text-red-800 px-2 py-1 rounded-full font-medium">Overdue</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        {% endblock %}
+        {% block js %}
+        <script>
+
+        </script>
+        {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#e0f7f0',
+                            lighter: '#ebfaf4',
+                            DEFAULT: '#00b383',
+                            dark: '#009b72',
+                        },
+                        secondary: {
+                            light: '#d0f4ea',
+                            DEFAULT: '#20e3b2',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary-lighter flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-[12rem] bg-white border-r border-gray-100 flex flex-col">
+        <div class="w-40 ml-3 mt-8  ">
+            <img src="{{ url_for('static', filename='pictures/icon.JPG') }}" >
+        </div>
+        <nav class="flex-1    py-4">
+            <a href="{{ url_for('admin_dashboard') }}" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bxs-dashboard  mr-3'></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('manage_members') }}" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-user mr-3'></i>
+                <span>Users</span>
+            </a>
+            <a href="{{ url_for('admin_files') }}" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+               <i class='bx bx-book-open mr-3'></i>
+                <span>Files</span>
+            </a>
+            <a href="{{ url_for('admin_messages') }}" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-envelope mr-3'></i>
+                <span>Messages</span>
+            </a>
+            <a href="{{ url_for('admin_announcement') }}" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-info-circle mr-3'></i>
+                <span>Announcement</span>
+            </a>
+            <a href="{{ url_for('admin_calendar') }}" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-calendar mr-3'></i>
+                <span>Calendar</span>
+            </a>
+            <a href="#" class="flex items-center px-5 py-3 text-gray-700 hover:text-primary ">
+                <i class='bx bx-check-circle mr-3'></i>
+                <span>Objectives</span>
+            </a>
+        </nav>
+        <div class="flex justify-center">
+              <button class="bg-primary hover:bg-primary-dark text-md text-white  mb-6 px-4 py-2 rounded-lg flex items-center">
+                 <i class='bx bx-plus mr-2'></i>
+                 <span>New Workspace</span>
+             </button>
+         </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-auto">
+        <!-- Header -->
+        <header class="bg-white p-4 flex justify-between items-center shadow-lg">
+        <h1 class="text-xl font-bold text-gray-800">Members</h1>
+            <div class="flex items-center">
+                <button class="p-2 mr-2 text-gray-600 hover:text-primary">
+                    <i class='bx bx-bell text-xl'></i>
+                </button>
+                <button class="p-2 mr-3 text-gray-600 hover:text-primary">
+                    <i class='bx bx-cog text-xl'></i>
+                </button>
+                <button class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center">
+                    S
+                </button>
+            </div>
+        </header>
+        <main class="p-6 flex flex-col gap-6">
+
+            <!-- Title and subtitle -->
+            <div>
+              <h1 class="text-3xl font-bold text-gray-800">Profile Settings</h1>
+              <p class="text-sm text-gray-500 mt-1">Manage your account details and preferences</p>
+            </div>
+
+            <!-- Boxes container -->
+            <div class="flex flex-col md:flex-row gap-6">
+
+              <!-- Box 1: Sidebar with profile pic and categories -->
+              <aside class="w-full md:w-1/3 bg-white shadow rounded-xl p-6 space-y-6">
+                <div class="flex flex-col items-center text-center">
+                  <img
+                    src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                    alt="User Profile"
+                    class="w-24 h-24 rounded-full border-4 border-green-500"
+                  />
+                  <h3 class="mt-4 text-xl font-semibold text-gray-800">Islem Ben...</h3>
+                  <p class="text-sm text-gray-500">Admin</p>
+                </div>
+
+                <nav class="space-y-2">
+                  <button data-tab="profile" class="tab-btn flex items-center w-full px-4 py-2 rounded-md text-left text-gray-700 hover:bg-green-100 transition">
+                    <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
+                      viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M5.121 17.804A13.937 13.937 0 0112 15c2.21 0 4.292.534 6.121 1.475M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    PROFILE
+                  </button>
+                  <button data-tab="account" class="tab-btn flex items-center w-full px-4 py-2 rounded-md text-left text-gray-700 hover:bg-green-100 transition">
+                    <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
+                      viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 11c0-1.105-.895-2-2-2s-2 .895-2 2 .895 2 2 2 2-.895 2-2zm0 0v2a2 2 0 01-2 2H8m4-4h2m4 0a2 2 0 01-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2h-2z" />
+                    </svg>
+                    Account
+                  </button>
+                  <button data-tab="preferences" class="tab-btn flex items-center w-full px-4 py-2 rounded-md text-left text-gray-700 hover:bg-green-100 transition">
+                    <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
+                      viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9.75 3a.75.75 0 00-.75.75V5.5H7a2 2 0 00-2 2v1.25h14V7.5a2 2 0 00-2-2h-2V3.75a.75.75 0 00-.75-.75h-4.5zM5 9.75v8a2 2 0 002 2h10a2 2 0 002-2v-8H5z" />
+                    </svg>
+                    Preferences
+                  </button>
+                </nav>
+              </aside>
+
+              <!-- Box 2: Main content with tabs -->
+              <section class="w-full md:w-2/3 bg-white shadow rounded-xl p-6">
+
+                <!-- Profile Section -->
+                <div id="profile-section" class="tab-content space-y-6">
+                  <h2 class="text-2xl font-bold mb-4">Personal Information</h2>
+                  <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-sm font-medium mb-1">Full Name</label>
+                      <input type="text" value="Islem Ben..." class="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-2 focus:ring-green-500" />
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium mb-1">Email Address</label>
+                      <input type="email" value="islem@example.com" class="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-2 focus:ring-green-500" />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium mb-1">Role</label>
+                    <input type="text" value="Delegate" disabled class="w-full border border-gray-300 px-4 py-2 bg-gray-100 rounded-md" />
+                    <p class="text-xs text-gray-500 mt-1">Your role cannot be changed. Contact an administrator for assistance.</p>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium mb-1">Bio</label>
+                    <textarea rows="4" placeholder="Write a few sentences about yourself..." class="w-full border border-gray-300 px-4 py-2 rounded-md focus:ring-2 focus:ring-green-500"></textarea>
+                  </div>
+                  <button class="bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-2 rounded-md transition">Save Changes</button>
+                </div>
+
+                <!-- Account Section with 2 boxes -->
+                <div id="account-section" class="tab-content hidden flex flex-col md:flex-row gap-6">
+
+
+                  <!-- Right Box: Email Settings -->
+                  <div class="w-full md:w-2/3 bg-white rounded-xl p-6 shadow space-y-6">
+                    <h2 class="text-2xl font-bold mb-4">Email Settings</h2>
+                    <div>
+                      <label class="inline-flex items-center space-x-2">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600" checked />
+                        <span class="text-gray-700 font-medium">Email Notifications</span>
+                      </label>
+                      <p class="text-sm text-gray-500 ml-7 mt-1">Receive email updates about your account activity</p>
+                    </div>
+                    <div>
+                      <label class="inline-flex items-center space-x-2">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600" />
+                        <span class="text-gray-700 font-medium">Marketing Emails</span>
+                      </label>
+                      <p class="text-sm text-gray-500 ml-7 mt-1">Receive information about new features and updates</p>
+                    </div>
+                    <div>
+                      <a href="changepassword.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-2 rounded-md transition">Change Password</a>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Preferences Section -->
+                <div id="preferences-section" class="tab-content hidden">
+                  <h2 class="text-2xl font-bold mb-4">Preferences</h2>
+                  <p class="text-gray-600">Customize your interface settings, notifications, and themes.</p>
+                </div>
+
+              </section>
+            </div>
+          </main>
+
+          <!-- JavaScript to switch tabs -->
+          <script>
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(btn => {
+              btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-tab');
+
+                // Hide all contents
+                contents.forEach(content => content.classList.add('hidden'));
+
+                // Show target content
+                document.getElementById(`${target}-section`).classList.remove('hidden');
+
+                // Remove active classes from all tabs
+                tabs.forEach(tab => tab.classList.remove('bg-green-100', 'font-semibold'));
+
+                // Add active classes to clicked tab
+                btn.classList.add('bg-green-100', 'font-semibold');
+              });
+            });
+
+            // Set default active tab on page load
+            document.querySelector('.tab-btn[data-tab="profile"]').click();
+          </script>
+
+
+</body>
+</html>

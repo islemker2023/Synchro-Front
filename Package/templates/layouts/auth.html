@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+
+{% block body_class %}bg-gradient-to-br from-[#e6f7f0] to-[#c8f5e3]{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md bg-white/80 backdrop-blur-xl p-8 rounded-xl shadow-lg border border-[#a7e9d2]/30">
+
+        {% block auth_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

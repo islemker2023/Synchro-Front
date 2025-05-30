@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome to Syncro</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+    /* Gradient Text */
+    .gradient-text {
+      background: linear-gradient(90deg, #10b981, #047857);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* Navbar underline hover */
+    nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: #10b981;
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    /* Mobile menu slide */
+    #mobileMenu {
+      transition: max-height 0.3s ease-in-out;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-r from-emerald-100 via-green-50 to-green-100 min-h-screen flex flex-col font-sans">
+  <div class="flex justify-between items-center  mb-6">
+    <!-- Name on top left -->
+
+  
+    <a href="#" class=" ml-20 mt-2 w-40 h-24 gap-3 select-none text-emerald-600 text-3xl font-extrabold ">
+      <img src="/image/Logooo.JPG">
+    </a>
+  
+    
+  </div>
+
+  <!-- Hero Section -->
+  <section class="flex-1 flex items-center justify-center px-16 max-w-screen-xl mx-auto w-full ml-2 mt-2 mb-10">
+      <!-- Left content -->
+      <div class=" max-w-xl space-y-10 fade-in-up" style="animation-delay: 0.2s;">
+        <h2 class="text-6xl font-extrabold leading-tight tracking-tight">
+          Streamline <span class="gradient-text">Collaboration</span> <br />
+          and <span class="gradient-text">Communication</span> <br />
+          with <span class="text-emerald-700">Syncro</span>
+        </h2>
+        <p class="text-gray-700 text-lg leading-relaxed">
+          Syncro is the ultimate workspace management platform for teachers, admins, and delegates.  
+          Track progress, share files, assign tasks, and communicate seamlessly—all from one intuitive hub.
+        </p>
+        <div class="flex flex-wrap gap-5">
+          <a href="{{ url_for('auth.signup.signup') }}" class="bg-emerald-500 hover:bg-emerald-600 text-white px-10 py-4 rounded-xl font-semibold transition shadow-lg hover:shadow-xl transform hover:scale-105">
+            Get Started
+          </a>
+          <a href="#" class="text-emerald-700 hover:text-emerald-900 font-semibold underline transition self-center">
+            Learn More
+          </a>
+        </div>
+      </div>
+
+      <!-- Right image -->
+      <div class="flex justify-center md:justify-end fade-in-up ml-10 mb-12" style="animation-delay: 0.4s;">
+        <img 
+          src="/image/synchrowhite.webp" 
+          alt="Team collaborating on workspace management" 
+          class="w-full max-w-md rounded-3xl shadow-2xl"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+  </section>
+
+  <section class="text-center py-16 px-6 bg-white">
+  <h2 class="text-3xl font-bold text-gray-900 mb-4">Everything your team is looking for</h2>
+  <p class="text-lg font-medium text-gray-700 mb-12">
+    <strong>ClickUp’s exceptional flexibility can handle any type of work.</strong> And we never stop innovating.
+  </p>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Card 1 -->
+    <div >
+      <div>
+        <h3 ></h3>
+      </div>
+    </div>
+
+    <!-- Card 3: Customization -->
+    <div class="bg-gradient-to-br from-indigo-700 via-purple-600 to-pink-500 rounded-xl p-6 text-white flex flex-col justify-between">
+      <div>
+        <h3 class="text-xl font-semibold mb-2">AI-powered productivity</h3>
+        <p>Get work done faster with the only AI-powered assistant tailored to your role.</p>
+      </div>
+      <img src="https://images.ctfassets.net/w8fc6tgspyjz/5sEQN5mm48tnX6kyqRXUBU/8377db6638b36ae5aa6bd29bbd708eda/AI-powered-productivity.png" alt="AI-powered productivity" class="mt-6 mx-auto max-w-full h-auto" />
+    </div>
+  </div>
+
+  <!-- Two-card section for integrations -->
+  <div class="mt-16 grid md:grid-cols-2 gap-8">
+    <div class="bg-gradient-to-br from-green-50 via-green-100 to-green-400 rounded-xl p-6 text-black-300">
+      <h3 class="text-xl font-semibold mb-2 ">Plays well with others</h3>
+      <p class="mb-4 ">Easily integrates with the tools you already use.</p>
+      <img src="/image/synchrowhite.webp" class="w-full" />
+    </div>
+    <div class="bg-gradient-to-br from-green-100 via-green-200 to-green-400 rounded-xl p-6 text-black-300">
+      <h3 class="text-xl font-semibold mb-2">Replaces them entirely</h3>
+      <p class="mb-4">Eliminate app sprawl and reduce software spend.</p>
+      <img src="/image/synchroblack.webp" alt="Replaces apps" class="w-full" />
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="mt-16 text-center">
+    <h3 class="text-2xl font-semibold text-gray-900 mb-2">Trusted by over 3,000,000 teams</h3>
+    <div class="flex flex-wrap justify-center gap-8 mt-6 text-left">
+      <div>
+        <h4 class="text-2xl font-bold text-indigo-600">305M+</h4>
+        <span class="text-gray-700">Tasks completed</span>
+      </div>
+      <div>
+        <h4 class="text-2xl font-bold text-indigo-600">55M+</h4>
+        <span class="text-gray-700">Docs created</span>
+      </div>
+      <div>
+        <h4 class="text-2xl font-bold text-indigo-600">615M+</h4>
+        <span class="text-gray-700">Messages sent</span>
+      </div>
+      <div>
+        <h4 class="text-2xl font-bold text-indigo-600">11M+</h4>
+        <span class="text-gray-700">Automations created</span>
+      </div>
+    </div>
+    <button class="mt-8 bg-indigo-600 text-white px-6 py-3 rounded-full font-medium shadow hover:bg-indigo-700 transition-all duration-300">
+      Join today for free
+    </button>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="bg-emerald-600 text-emerald-100 py-10 mt-auto">
+    <div class="max-w-screen-xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
+      <div>
+        <h5 class="font-semibold text-lg mb-4">About Us</h5>
+        <p class="text-sm max-w-xs mx-auto sm:mx-0">
+          Syncro is designed to simplify workspace management for educational institutions, helping teams collaborate effectively.
+        </p>
+      </div>
+      <div>
+        <h5 class="font-semibold text-lg mb-4">FAQ</h5>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:underline">Getting Started</a></li>
+          <li><a href="#" class="hover:underline">Account Management</a></li>
+          <li><a href="#" class="hover:underline">Features Overview</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-semibold text-lg mb-4">Help</h5>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:underline">Contact Support</a></li>
+          <li><a href="#" class="hover:underline">Documentation</a></li>
+          <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center text-xs mt-10 opacity-70">
+      &copy; 2025 Syncro. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

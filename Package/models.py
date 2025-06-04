@@ -1,8 +1,10 @@
+# Fixed models.py
 import secrets
 import uuid
 
 from prompt_toolkit.shortcuts import message_dialog
-from sqlalchemy import Column, String, Boolean, DateTime, Text, ForeignKey, Table, Enum, UniqueConstraint, Integer, Date
+from sqlalchemy import Column, String, Boolean, DateTime, Text, ForeignKey, Table, Enum, UniqueConstraint, Integer, \
+    Date, Time
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime, timezone, timedelta
@@ -464,7 +466,7 @@ class Objective(Base):
     # Relationships
     workspace = relationship("Workspace", back_populates="objectives")
     teacher = relationship("Teachers", back_populates="objectives")
-    creator = relationship("Users")
+    creator = relationship("Users", foreign_keys=[created_by])
     sub_objectives = relationship("SubObjective", back_populates="objective", cascade="all, delete-orphan")
 
     def get_completion_percentage(self):
@@ -554,9 +556,11 @@ class Message(Base):  # Use db.Model if using Flask SQLAlchemy
     user_id = Column(UUID(as_uuid=True), ForeignKey('users.user_id'), nullable=False)
     workspace_id = Column(UUID(as_uuid=True), ForeignKey('workspaces.workspace_id'), nullable=False)
     message_content = Column(Text, nullable=False)
-    send_to = Column(String(255), nullable=False)
+    sender_name = Column(String(255), nullable=False)
     email = Column(String(255), nullable=False)
+    send_to = Column(String(255), nullable=False)
     subject = Column(String(255), nullable=False)
+    sent_at = Column(DateTime, default=datetime.utcnow)
     # Relationships
     user = relationship("Users", backref="messages")
     workspace = relationship("Workspace", backref="messages")

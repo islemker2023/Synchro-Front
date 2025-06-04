@@ -11,7 +11,7 @@ import os
 from Package.models import Base, Users, Workspace
 
 # Create Flask app
-app = Flask(__name__,static_folder='package/static')
+app = Flask(__name__)
 app.config['SECRET_KEY'] = 'TESTTEST'
 
 # Database Configuration
@@ -22,8 +22,12 @@ app.permanent_session_lifetime = timedelta(minutes=30)
 # Create engine and initialize session properly
 engine = create_engine(DB_URL)
 # Create all tables from models.py
-
-
+base_dir = os.path.dirname(__file__)  # folder where app.py lives
+AI_file_path = os.path.join(base_dir, "static", "knowledge.json")
+# with engine.connect() as conn:
+#            conn.execute(text("DROP SCHEMA public CASCADE;"))
+#            conn.execute(text("CREATE SCHEMA public;"))
+#            conn.commit()
 Base.metadata.create_all(engine)
 
 
@@ -54,13 +58,17 @@ app.config['MAIL_ASCII_ATTACHMENTS'] = False  # Optional: set to True if you nee
 mail = Mail(app)
 
 
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
+ALLOWED_EXTENSIONS = {
+    'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx',
+    'xls', 'xlsx', 'ppt', 'pptx', 'zip', 'rar', '7z', 'mp4',
+    'mp3', 'wav', 'avi', 'mov', 'csv'
+}
 
-# Load user callback
-def load_user(user_id):
-   try:
-       return db_session.query(Users).filter_by(user_id=user_id).first()
-   except ValueError:
-       return None
+MAX_FILE_SIZE = 50 * 1024 * 1024
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Max file size = 16MB
 
 
 def configure_logging(app):
@@ -135,11 +143,26 @@ def inject_csrf_token():
 
 
 # Import and register auth blueprint
-from Package.auth import init_app
-from Package import routes
+from Package.routes.delegate import init_app as delegate_init
+from Package.routes.teacher import init_app as teacher_init
+from Package.routes.admin import init_app as admin_init
+from Package.routes.common import init_app as common_init
+from Package.routes.auth import init_app as auth_init
+
 auth_bp = Blueprint('auth', __name__)
-routes_bp = Blueprint('routes', __name__)
-init_app(auth_bp)
-init_app(routes_bp)
+teacher_bp = Blueprint('teacher', __name__)
+admin_bp = Blueprint('admin', __name__)
+common_bp = Blueprint('common', __name__)
+delegate_bp = Blueprint('delegate', __name__)
+
+delegate_init(delegate_bp)
+teacher_init(teacher_bp)
+admin_init(admin_bp)
+common_init(common_bp)
+auth_init(auth_bp)
+
 app.register_blueprint(auth_bp)
-app.register_blueprint(routes_bp)
+app.register_blueprint(delegate_bp)
+app.register_blueprint(teacher_bp)
+app.register_blueprint(admin_bp)
+app.register_blueprint(common_bp)

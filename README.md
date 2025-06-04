@@ -42,4 +42,18 @@
 
 ---
 
+### 📈 State of Progress
+- ✅ Database schema completed
+- ✅ Role-based authentication and OAuth
+- ✅ Gmail messaging system integrated
+- ✅ Frontend: Login, Signup, Dashboard, Messaging, and Profile
+- 🛠️ In progress: AI chatbot (Gemini + RAG), Admin analytics, UI polish
+- 📅 Next milestone: Final presentation and deployment
+
+### 💬 Team Synchro
+- Project Leader: Okba
+- Frontend: Ahmed, Islem, Mahdi
+- Backend: Moncef, Oussama
+- Database: Anes, Karim
+- AI & Analytics: Idriss
 

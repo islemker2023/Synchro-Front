@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Select Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              light: '#e0f7f0',
+              lighter: '#ebfaf4',
+              DEFAULT: '#00b383',
+              dark: '#009b72',
+            },
+            secondary: {
+              light: '#d0f4ea',
+              DEFAULT: '#20e3b2',
+            },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-primary-lighter min-h-screen flex flex-col font-sans" style="background-color: #F2FFF5;">
+
+  <!-- Header with Profile Button -->
+  <header class="relative w-full px-8 pt-2">
+    <div class="absolute top-6 right-3">
+      <button id="profileButton"
+          class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center">
+          S
+      </button>
+      <div id="profileMenu" class="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50
+  transform transition-all duration-300 ease-out
+  scale-95 opacity-0 invisible translate-y-2">
+
+          <a href="{{ url_for('common.profile.profile') }}" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
+              <!-- Profile Icon -->
+              <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 1115 0H4.5z" />
+              </svg>
+              My Profile
+          </a>
+
+          <a href="{{ url_for('common.profile.profile') }}" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
+              <!-- Settings Icon -->
+              <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.591 1.066c1.54-.94 3.31.83 2.37 2.37a1.724 1.724 0 001.066 2.592c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.591c.94 1.54-.83 3.31-2.37 2.37a1.724 1.724 0 00-2.592 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.591-1.066c-1.54.94-3.31-.83-2.37-2.37a1.724 1.724 0 00-1.066-2.592c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.591c-.94-1.54.83-3.31 2.37-2.37.966.59 2.175.042 2.591-1.066z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Settings
+          </a>
+          <hr>
+          <a href="{{ url_for('auth.login.logout') }}" class="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-gray-100">
+              <!-- Logout Icon -->
+              <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15.75 9V5.25A2.25 2.25 0 0013.5 3H6.75A2.25 2.25 0 004.5 5.25v13.5A2.25 2.25 0 006.75 21H13.5a2.25 2.25 0 002.25-2.25V15M18.75 12H9.75m0 0l3-3m-3 3l3 3" />
+              </svg>
+              Logout
+          </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Logo Section -->
+  <div class="flex justify-center pt-8 ">
+    <img src="{{ url_for('static',filename='pictures/icon.PNG') }}" alt="Workspace Image" class="w-48 h-auto rounded-xl" />
+  </div>
+
+  <!-- Main Content - Centered -->
+  <main class="flex-grow flex flex-col items-center justify-center px-4 -mt-16">
+    <div class="w-full max-w-xl flex flex-col items-center space-y-6">
+
+      <!-- Workspace Cards -->
+      {% if workspace_data %}
+        {% for workspace in workspace_data %}
+            <div class="bg-white w-full rounded-2xl shadow-lg p-6 flex flex-col justify-between border border-slate-200 hover:shadow-2xl transition duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-medium px-3 py-1 rounded-full bg-indigo-100 text-indigo-700">
+                    {{ workspace.role }}
+                  </span>
+                </div>
+                <h2 class="text-xl font-semibold text-slate-800 mt-3">{{ workspace.name }}</h2>
+                <p class="text-sm text-slate-500 mt-1">{{ workspace.description }}</p>
+              </div>
+              {% if workspace.role == 'Admin' %}
+              <a href="{{ url_for('admin.announcement.admin_announcement', workspace_id = workspace.workspace_id) }}"
+                class="mt-6 bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded-lg transition shadow-md inline-block text-center">
+                Join
+              </a>
+              {% elif workspace.role == 'Teacher' %}
+              <a href="{{ url_for('teacher.announcement.teacher_announcement', workspace_id = workspace.workspace_id) }}"
+                class="mt-6 bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded-lg transition shadow-md inline-block text-center">
+                Join
+              </a>
+              {% else %}
+              <a href="{{ url_for('delegate.announcement.delegate_announcement', workspace_id = workspace.workspace_id) }}"
+                class="mt-6 bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded-lg transition shadow-md inline-block text-center">
+                Join
+              </a>
+              {% endif %}
+            </div>
+        {% endfor %}
+      {% else %}
+           <div class="p-6 bg-white rounded-2xl shadow-md text-center">
+              <p class="text-gray-500">You have not created any workspaces yet</p>
+          </div>
+      {% endif %}
+
+      <!-- Action Buttons -->
+      <div class="flex justify-center space-x-4 mt-8">
+        <button id="newWorkspaceBtn" type="button"
+          class="bg-green-100 text-green-800 hover:bg-green-200 font-semibold py-2 px-6 rounded-xl border-primary shadow-md transition">
+          + New Workspace
+        </button>
+        <button id="joinWorkspaceBtn" type="button"
+          class="bg-green-100 text-green-800 hover:bg-green-200 font-semibold py-2 px-6 rounded-xl shadow-md transition">
+          Join Workspace
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modals -->
+  <div id="newWorkspaceModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl h-64">
+      <h2 class="text-xl font-bold mb-4 text-slate-800">Create New Workspace</h2>
+    <form id="createWorkspaceForm" method="POST" action="{{ url_for('common.create_workspace.create_workspace') }}" >
+      <input type="text" id="workspaceNameInput" name="workspace_name" placeholder="Enter workspace name..."
+      class="w-full  px-4 py-2 rounded-lg mb-4 border-green-400" required />
+      <input type="text" id="workspaceDescInput" name="workspace_description" placeholder="Enter workspace description..."
+      class="w-full  px-4 py-2 rounded-lg mb-4 border-green-400" />
+      <div class="flex justify-end space-x-3">
+      <button type="button" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 mt-20"
+        onclick="toggleNewModal()">Cancel</button>
+      <button type="submit" id="createBtn" class="px-4 py-2 text-white rounded-lg  bg-green-400
+         hover:bg-green-500 hover:shadow-lg mt-20 w-32">Create</button>
+      </div>
+     </form>
+    </div>
+  </div>
+
+  <div id="joinWorkspaceModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl h-64">
+      <h2 class="text-xl font-bold mb-4 text-slate-800">Join Workspace</h2>
+      <form id="joinWorkspaceForm" method="POST" action="{{url_for('common.join_workspace.join_workspace')}}">
+        <input type="text" id="joinCode" name="invite_code" placeholder="Enter invite code..."
+          class="w-full border px-4 py-2 rounded-lg mb-4 focus:ring-2 focus:ring-blue-500" required />
+        <div class="flex justify-end space-x-3">
+          <button type="button" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 mt-20"
+            onclick="toggleJoinModal()">Cancel</button>
+          <button type="submit" class="px-4 py-2 text-white rounded-lg mt-20 w-32 bg-gradient-to-r from-green-300 to-green-400
+    hover:from-green-400 hover:to-green-500 hover:shadow-lg">Join</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+const profileButton = document.getElementById('profileButton');
+const profileMenu = document.getElementById('profileMenu');
+
+profileButton.addEventListener('click', () => {
+    const isHidden = profileMenu.classList.contains('invisible');
+
+    if (isHidden) {
+        profileMenu.classList.remove('invisible', 'opacity-0', 'scale-95', 'translate-y-2');
+        profileMenu.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+    } else {
+        profileMenu.classList.add('opacity-0', 'scale-95', 'translate-y-2');
+        setTimeout(() => {
+            profileMenu.classList.add('invisible');
+        }, 300);
+        profileMenu.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+    }
+});
+
+// Toggle modals
+const newModal = document.getElementById('newWorkspaceModal');
+const joinModal = document.getElementById('joinWorkspaceModal');
+
+function toggleNewModal() {
+    newModal.classList.toggle('hidden');
+    newModal.classList.toggle('flex');
+}
+
+function toggleJoinModal() {
+    joinModal.classList.toggle('hidden');
+    joinModal.classList.toggle('flex');
+}
+
+document.getElementById('newWorkspaceBtn').addEventListener('click', toggleNewModal);
+document.getElementById('joinWorkspaceBtn').addEventListener('click', toggleJoinModal);
+  </script>
+</body>
+
+</html>

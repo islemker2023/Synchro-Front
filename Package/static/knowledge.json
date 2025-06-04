@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Introduction to Synchro AI",
+    "content": "Synchro AI is a chatbot that helps users with virtual assistance using Gemini API."
+  },
+  {
+    "title": "What is RAG?",
+    "content": "Retrieval-Augmented Generation is a method that combines retrieval with language generation models."
+  },
+  {
+    "title": "Features of Synchro AI",
+    "content": "It includes a floating button, chat history, and integrates with Gemini for responses.Admin Features\nCreate and manage workspaces (e.g., University or Company).\n\nAssign roles (Teacher or Delegate) via invite links.\n\nDefine semester objectives for each teacher.\n\nMonitor teacher progress through reports and visual dashboards.\n\nSend notices to teachers and delegates.\n\nTo-do list management for tracking teacher responsibilities.\n\n Teacher Features\nLog progress: Mark lectures, practicals, and other milestones.\n\nUpload files (PDFs, videos, notes) related to their courses.\n\nAssign tasks/homework using Google Forms.\n\nEmail integration via Gmail API to contact delegates, other teachers, or admins.\n\nView objectives and report on progress to admins.\n\n Delegate (Student) Features\nAccess notices from teachers and admins.\n\nView uploaded course materials organized by subject.\n\nComplete tasks/homework (linked via Google Forms).\n\nCheck calendar for upcoming events and deadlines.\n\nReceive email updates and messages via integrated Gmail system.\n\n AI & Data Analysis Features\nAI Assistant to answer queries or give task reminders (under development).\n\nTeacher progress insights: Graphical representation of course completion.\n\nObjective tracking analytics: Admins get visual updates on how close teachers are to their goals.\n\n\uD83D\uDCC1 File & Assignment Management\nFiles are linked to courses, not lectures.\n\nAssignments are handled through external Google Forms, not internal quizzes.\n\n\uD83D\uDD10 Security Features\nOAuth 2.0 login (e.g., Google login support).\n\nRole-based access control using a UserWorkspaceRole model.\n\nSQL injection protection via ORM (SQLAlchemy).\n\nAPI and backend security best practices implemented.\n\n\uD83E\uDDF1 Architecture & Stack\nBackend: Python, Flask, SQLAlchemy.\n\nFrontend: HTML, CSS, JS (custom-built interface).\n\nDatabase: PostgreSQL.\n\nMessaging: Gmail API (no internal chat database)."
+  },
+  {
+    "title": "How to Use",
+    "content": "Click the green button to open the chatbot. Type a message and press send."
+  },
+  {
+    "title": "Privacy",
+    "content": "Your messages are sent to Gemini API and not stored on the server."
+  }
+]

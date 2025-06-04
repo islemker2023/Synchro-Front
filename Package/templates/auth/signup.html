@@ -1,0 +1,117 @@
+{% extends "layouts/auth.html" %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block auth_content %}
+    <div class="w-full max-w-screen-xl flex flex-col items-center">
+        <div class="mb-8">
+            <img src="{{ url_for('static', filename='pictures/icon.PNG') }}" alt="Synchro" class="h-12 drop-shadow-lg">
+        </div>
+        <div class="bg-white rounded-xl shadow-lg w-full max-w-sm p-6 mb-8">
+            <div class="mb-6">
+                <a href="{{ url_for('auth.login.login') }}" class="text-gray-800 text-xl font-bold flex items-center">
+                    <span class="mr-2">←</span> Create account
+                </a>
+            </div>
+
+            <!-- Display form errors -->
+            {% if form.errors %}
+                <div class="mb-4">
+                    {% for field, errors in form.errors.items() %}
+                        {% for error in errors %}
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-2">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('auth.signup.signup') }}" class="flex flex-col">
+                {{ form.hidden_tag() }}
+
+                <div class="mb-4 relative">
+                    <div class="relative">
+                        <i class='bx bxs-user absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'></i>
+                        {{ form.fullname(
+                            id="fullname",
+                            placeholder="Full name",
+                            class="bg-gray-50 w-full px-9 py-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-emerald-300 transition-colors"
+                        ) }}
+                    </div>
+                    {% if form.fullname.errors %}
+                        {% for error in form.fullname.errors %}
+                            <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="mb-4 relative">
+                    <div class="relative">
+                        <i class='bx bxs-envelope absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'></i>
+                        {{ form.email(
+                            id="email",
+                            placeholder="Email address",
+                            class="bg-gray-50 w-full px-9 py-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-emerald-300 transition-colors"
+                        ) }}
+                    </div>
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="mb-4 relative">
+                    <div class="relative">
+                        <i class='bx bxs-lock-alt absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'></i>
+                        {{ form.password(
+                            id="password",
+                            placeholder="Create password",
+                            class="bg-gray-50 w-full px-9 py-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-emerald-300 transition-colors"
+                        ) }}
+                    </div>
+                    {% if form.password.errors %}
+                        {% for error in form.password.errors %}
+                            <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="mb-4 relative">
+                    <div class="relative">
+                        <i class='bx bxs-lock-alt absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'></i>
+                        {{ form.confirmPassword(
+                            id="confirmPassword",
+                            placeholder="Confirm password",
+                            class="bg-gray-50 w-full px-9 py-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-emerald-300 transition-colors"
+                        ) }}
+                    </div>
+                    {% if form.confirmPassword.errors %}
+                        {% for error in form.confirmPassword.errors %}
+                            <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="flex items-start mb-5 mt-2">
+                    <input type="checkbox" id="terms" required class="mr-2 mt-1 w-3.5 h-3.5">
+                    <label for="terms" class="font-medium text-xs text-gray-500">
+                        I agree to the <a href="#" class="font-bold text-emerald-400 hover:underline">Terms of Service</a>
+                        and <a href="#" class="font-bold text-emerald-400 hover:underline">Privacy Policy</a>
+                    </label>
+                </div>
+
+                {{ form.submit(class="bg-emerald-400 hover:bg-emerald-500 text-white font-medium py-2.5 px-4 rounded-lg transition-colors") }}
+
+                <div class="text-center mt-4 font-medium text-xs text-gray-500">
+                    Already have an account?
+                    <a href="{{ url_for('auth.login.login') }}" class="font-bold text-emerald-400 hover:underline">Sign in</a>
+                </div>
+            </form>
+        </div>
+        <div class="text-center mt-px font-medium text-xs text-gray-400">
+            <p>Secure login powered by jm3ia platform</p>
+        </div>
+    </div>
+{% endblock %}

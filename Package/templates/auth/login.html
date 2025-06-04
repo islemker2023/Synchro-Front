@@ -1,0 +1,88 @@
+{% extends "layouts/auth.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block auth_content %}
+<!-- ✅ Logo stands alone at the top -->
+<div class="w-full flex justify-center mt-6 mb-4">
+    <img src="{{ url_for('static', filename='pictures/icon.PNG') }}" class="w-48" alt="Synchro Logo" />
+</div>
+
+<!-- ✅ Login form WITHOUT white container -->
+<div class="w-full max-w-md px-4 mx-auto">
+    <div class="mb-6">
+        <a href="{{ url_for('auth.signup.signup') }}" class="text-black-800 text-2xl font-bold flex items-center">
+            <span class="mr-2">←</span> Login
+        </a>
+    </div>
+
+    {% if form.errors %}
+        <div class="mb-4">
+            {% for field, errors in form.errors.items() %}
+                {% for error in errors %}
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-2">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="POST" class="flex flex-col">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-4 relative">
+            <div class="relative">
+                <i class='bx bxs-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400'></i>
+                {{ form.email(
+                    id="email",
+                    placeholder="Email address",
+                    class="bg-white w-full px-10 py-3 border border-gray-200 rounded-xl text-base outline-none focus:border-emerald-300 transition-colors"
+                ) }}
+            </div>
+            {% for error in form.email.errors %}
+                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-4 relative">
+            <div class="relative">
+                <i class='bx bxs-lock-alt absolute left-4 top-1/2 -translate-y-1/2 text-gray-400'></i>
+                {{ form.password(
+                    id="password",
+                    placeholder="Enter password",
+                    class="bg-white w-full px-10 py-3 border border-gray-200 rounded-xl text-base outline-none focus:border-emerald-300 transition-colors"
+                ) }}
+            </div>
+            {% for error in form.password.errors %}
+                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <a href="{{ url_for('auth.oauth.google_login') }}"
+            class="flex items-center justify-center mb-5 gap-2 border border-gray-300 rounded-xl py-3 text-gray-700 font-semibold hover:bg-gray-100 transition-colors">
+            <i class='bx bxl-google text-xl'></i>
+            Continue with Google
+        </a>
+
+        <div class="flex justify-between items-center mb-6 mt-2 text-sm text-gray-500">
+            <label class="flex items-center">
+                <input type="checkbox" class="mr-2 w-4 h-4" /> Remember me
+            </label>
+            <a href="{{ url_for('auth.password_reset.forgot_password') }}" class="text-emerald-400 font-bold hover:underline">Forgot password?</a>
+        </div>
+
+        {{ form.submit(class="bg-emerald-400 hover:bg-emerald-500 text-white font-medium py-3 px-4 rounded-xl transition-colors") }}
+
+        <div class="text-center mt-5 font-medium text-sm text-gray-500">
+            Don't have an account?
+            <a href="{{ url_for('auth.signup.signup') }}" class="font-bold text-emerald-400 hover:underline">Create one</a>
+        </div>
+    </form>
+</div>
+
+<!-- ✅ Footer message -->
+<div class="text-center mt-6 font-medium text-xs text-gray-500">
+    <p>Secure login powered by Synchro platform</p>
+</div>
+{% endblock %}

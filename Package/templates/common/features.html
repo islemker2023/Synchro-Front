@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feature Overview – Synchro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              light: '#e0f7f0',
+              lighter: '#ebfaf4',
+              DEFAULT: '#00b383',
+              dark: '#009b72',
+            },
+            secondary: {
+              DEFAULT: '#20e3b2',
+            },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-primary-lighter text-gray-800">
+
+  <main class="max-w-4xl mx-auto py-12 px-4">
+    <h1 class="text-3xl font-bold text-center mb-8 text-primary-dark">Feature Overview – FAQs</h1>
+
+    <div class="space-y-6">
+
+      <!-- FAQ Item Template -->
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span>1. What is Synchro and who is it for?</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+            Synchro is a workspace collaboration tool for teachers, admins, and delegates (students), designed to streamline communication, academic progress tracking, and resource sharing.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span>2. What are the main features for Admins?</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+            Admins can create workspaces, assign semester objectives, manage teacher tasks, and track progress through visual dashboards and reports.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span>3. What can Teachers do on Synchro?</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+            Teachers upload files, log lecture hours, assign homework using Google Forms, and communicate with delegates and admins.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span>4. What do Delegates gain from Synchro?</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+            Delegates (students) can access course files, track assignments, receive notifications, and stay updated with academic progress through their dashboard.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span>5. Does Synchro support messaging?</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+            Yes, Synchro integrates Gmail API to enable secure, role-based messaging between teachers, delegates, and admins.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 mt-12 pb-6">
+    &copy; 2025 Synchro. All rights reserved.
+  </footer>
+
+  <!-- Accordion Script -->
+  <script>
+    function toggleAnswer(button) {
+      const group = button.parentElement;
+      const answer = group.querySelector('.accordion-answer');
+      const arrow = button.querySelector('svg');
+
+      const allGroups = document.querySelectorAll('.group');
+      allGroups.forEach(g => {
+        if (g !== group) {
+          g.querySelector('.accordion-answer').style.maxHeight = '0px';
+          g.querySelector('svg').classList.remove('rotate-180');
+        }
+      });
+
+      const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+      if (isOpen) {
+        answer.style.maxHeight = '0px';
+        arrow.classList.remove('rotate-180');
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        arrow.classList.add('rotate-180');
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.group').forEach(g => {
+        const answer = g.querySelector('.accordion-answer');
+        if (answer.style.maxHeight && answer.style.maxHeight !== '0px') {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+

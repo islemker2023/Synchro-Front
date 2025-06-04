@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Getting Started – Synchro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              light: '#e0f7f0',
+              lighter: '#ebfaf4',
+              DEFAULT: '#00b383',
+              dark: '#009b72',
+            },
+            secondary: {
+              light: '#d0f4ea',
+              DEFAULT: '#20e3b2',
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body class="bg-primary-lighter text-gray-800">
+
+ 
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto py-10 px-4">
+    <div class="bg-white rounded-2xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-primary-dark mb-6 text-center">Getting Started - FAQs</h2>
+
+      <div class="space-y-4">
+        <!-- FAQ Item Template -->
+        <div class="border border-gray-200 rounded-xl overflow-hidden">
+          <button class="w-full flex justify-between items-center px-6 py-4 bg-gray-50 hover:bg-gray-100 transition group" onclick="toggleAnswer(this)">
+            <span class="text-left font-medium text-primary">1. How do I sign up on Synchro?</span>
+            <i class='bx bx-chevron-down text-xl transition-transform group-[.open]:rotate-180'></i>
+          </button>
+          <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-600 transition-all duration-500 ease-in-out">
+            You can sign up by visiting our <a href="{{ url_for('auth.signup.signup') }}" class="text-primary underline">Sign Up</a> page. Depending on your role (Delegate, Teacher, Admin), you’ll be asked to enter a valid invite link provided by your organization or workspace administrator.
+          </div>
+        </div>
+
+        <div class="border border-gray-200 rounded-xl overflow-hidden">
+          <button class="w-full flex justify-between items-center px-6 py-4 bg-gray-50 hover:bg-gray-100 transition group" onclick="toggleAnswer(this)">
+            <span class="text-left font-medium text-primary">2. What information do I need to sign up?</span>
+            <i class='bx bx-chevron-down text-xl transition-transform group-[.open]:rotate-180'></i>
+          </button>
+          <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-600 transition-all duration-500 ease-in-out">
+            You’ll need a valid email address, your full name, and the invite link shared by your workspace admin. For teachers and delegates, this link is mandatory to verify your role.
+          </div>
+        </div>
+
+        <div class="border border-gray-200 rounded-xl overflow-hidden">
+          <button class="w-full flex justify-between items-center px-6 py-4 bg-gray-50 hover:bg-gray-100 transition group" onclick="toggleAnswer(this)">
+            <span class="text-left font-medium text-primary">3. What if I didn’t receive an invitation link?</span>
+            <i class='bx bx-chevron-down text-xl transition-transform group-[.open]:rotate-180'></i>
+          </button>
+          <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-600 transition-all duration-500 ease-in-out">
+            Please contact your administrator to request a valid invite. Without it, you won’t be able to access your role-specific dashboard.
+          </div>
+        </div>
+
+        <div class="border border-gray-200 rounded-xl overflow-hidden">
+          <button class="w-full flex justify-between items-center px-6 py-4 bg-gray-50 hover:bg-gray-100 transition group" onclick="toggleAnswer(this)">
+            <span class="text-left font-medium text-primary">4. Can I change my role after signing up?</span>
+            <i class='bx bx-chevron-down text-xl transition-transform group-[.open]:rotate-180'></i>
+          </button>
+          <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-600 transition-all duration-500 ease-in-out">
+            Role changes must be handled by an Admin. Contact your admin if you need your role adjusted.
+          </div>
+        </div>
+
+        <div class="border border-gray-200 rounded-xl overflow-hidden">
+          <button class="w-full flex justify-between items-center px-6 py-4 bg-gray-50 hover:bg-gray-100 transition group" onclick="toggleAnswer(this)">
+            <span class="text-left font-medium text-primary">5. Is my account secure?</span>
+            <i class='bx bx-chevron-down text-xl transition-transform group-[.open]:rotate-180'></i>
+          </button>
+          <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-600 transition-all duration-500 ease-in-out">
+            Yes. Synchro uses secure login methods and encrypted data storage. Make sure to use a strong password, and enable two-factor authentication if available.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 mt-12 pb-6">
+    &copy; 2025 Synchro. All rights reserved.
+  </footer>
+
+<script>
+  function toggleAnswer(button) {
+    const allAnswers = document.querySelectorAll('.accordion-answer');
+    const allGroups = document.querySelectorAll('.group');
+
+    // Collapse all
+    allAnswers.forEach(el => {
+      el.style.maxHeight = '0px';
+    });
+    allGroups.forEach(el => el.classList.remove('open'));
+
+    const parent = button.parentElement;
+    const answer = button.nextElementSibling;
+
+    if (!parent.classList.contains('open')) {
+      parent.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  }
+
+  // Optional: Recalculate max-height on window resize
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.group.open .accordion-answer').forEach(el => {
+      el.style.maxHeight = el.scrollHeight + 'px';
+    });
+  });
+</script>
+
+
+
+</body>
+</html>

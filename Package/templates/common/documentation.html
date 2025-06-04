@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Documentation – Synchro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              light: '#e0f7f0',
+              lighter: '#ebfaf4',
+              DEFAULT: '#00b383',
+              dark: '#009b72',
+            },
+            secondary: {
+              DEFAULT: '#20e3b2',
+            },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-primary-lighter text-gray-800">
+
+  <main class="max-w-4xl mx-auto py-12 px-4">
+    <h1 class="text-3xl font-bold text-center mb-1 text-primary-dark">Documentation</h1>
+     <p class="text-gray-600 text-center max-w-xl mb-8 mx-auto">Find answers and instructions on how to use Synchronize effectively.</p>
+    <div class="space-y-6">
+
+      
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span>Getting Started</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+            Learn how to create an account, join or create a workspace, and navigate your dashboard as a new user.
+          </div>
+        </div>
+      </div>
+
+
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span>User Roles & Permissions</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+             Understand the differences between Admins, Teachers, and Delegates, and how permissions vary by role.
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span>Assignments & File Sharing</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+             Learn how teachers upload Google Form assignments, share course files, and how delegates can access them.
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span>Calendar & Notifications</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+              Discover how to stay informed using calendar events and real-time notifications for updates and tasks.
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="bg-white rounded-xl shadow-sm transition-all group">
+        <div onclick="toggleAnswer(this)" class="cursor-pointer px-6 py-4 flex justify-between items-center text-primary-dark font-medium">
+          <span> Troubleshooting</span>
+          <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <div class="accordion-answer max-h-0 overflow-hidden px-6 text-sm text-gray-700 transition-all duration-500 ease-in-out">
+          <div class="pb-4">
+          Having issues? Here’s how to resolve common problems or how to reach out to our support team.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 mt-12 pb-6">
+    &copy; 2025 Synchro. All rights reserved.
+  </footer>
+
+  
+  <script>
+    function toggleAnswer(button) {
+      const group = button.parentElement;
+      const answer = group.querySelector('.accordion-answer');
+      const arrow = button.querySelector('svg');
+
+      const allGroups = document.querySelectorAll('.group');
+      allGroups.forEach(g => {
+        if (g !== group) {
+          g.querySelector('.accordion-answer').style.maxHeight = '0px';
+          g.querySelector('svg').classList.remove('rotate-180');
+        }
+      });
+
+      const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+      if (isOpen) {
+        answer.style.maxHeight = '0px';
+        arrow.classList.remove('rotate-180');
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        arrow.classList.add('rotate-180');
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.group').forEach(g => {
+        const answer = g.querySelector('.accordion-answer');
+        if (answer.style.maxHeight && answer.style.maxHeight !== '0px') {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

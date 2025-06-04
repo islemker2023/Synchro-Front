@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role Information</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#e0f7f0',
+                            lighter: '#ebfaf4',
+                            DEFAULT: '#00b383',
+                            dark: '#009b72',
+                        },
+                        secondary: {
+                            light: '#d0f4ea',
+                            DEFAULT: '#20e3b2',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary-lighter min-h-screen">
+    <!-- Header -->
+    <header class="bg-white p-4 flex justify-between items-center shadow-lg">
+        <div class="flex items-center">
+            <a href="{{ url_for('common.profile.profile') }}" class="mr-4 p-2 text-gray-600 hover:text-primary transition">
+                <i class='bx bx-arrow-back text-xl'></i>
+            </a>
+            <h1 class="text-xl font-bold text-gray-800">Role Information</h1>
+        </div>
+        <div class="flex items-center">
+            <button class="p-2 mr-2 text-gray-600 hover:text-primary">
+                <i class='bx bx-bell text-xl'></i>
+            </button>
+            <button class="p-2 mr-3 text-gray-600 hover:text-primary">
+                <i class='bx bx-cog text-xl'></i>
+            </button>
+            <button class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center">
+                {{ current_user.full_name[0] if current_user.full_name else 'U' }}
+            </button>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Your Role Information</h1>
+            <p class="text-gray-600">Overview of your roles and permissions across all workspaces</p>
+        </div>
+
+        {% if user_roles %}
+            <!-- Role Summary Card -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                <div class="flex items-center mb-4">
+                    <i class='bx bx-user-circle text-3xl text-primary mr-3'></i>
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-800">{{ current_user.full_name or 'User' }}</h2>
+                        <p class="text-gray-600">Active in {{ user_roles|length }} workspace{{ 's' if user_roles|length != 1 else '' }}</p>
+                    </div>
+                </div>
+
+                <!-- Role Statistics -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+                    {% set admin_count = user_roles | selectattr('role', 'equalto', 'ADMIN') | list | length %}
+                    {% set teacher_count = user_roles | selectattr('role', 'equalto', 'TEACHER') | list | length %}
+                    {% set delegate_count = user_roles | selectattr('role', 'equalto', 'DELEGATE') | list | length %}
+                    {% set member_count = user_roles | selectattr('role', 'equalto', 'MEMBER') | list | length %}
+
+                    <div class="bg-red-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-red-600">{{ admin_count }}</div>
+                        <div class="text-sm text-red-800">Admin Role{{ 's' if admin_count != 1 else '' }}</div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-blue-600">{{ teacher_count }}</div>
+                        <div class="text-sm text-blue-800">Teacher Role{{ 's' if teacher_count != 1 else '' }}</div>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-yellow-600">{{ delegate_count }}</div>
+                        <div class="text-sm text-yellow-800">Delegate Role{{ 's' if delegate_count != 1 else '' }}</div>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-green-600">{{ member_count }}</div>
+                        <div class="text-sm text-green-800">Member Role{{ 's' if member_count != 1 else '' }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workspace Roles Details -->
+            <div class="space-y-4">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Workspace Details</h2>
+
+                {% for role_info in user_roles %}
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center mb-3">
+                                <i class='bx bx-buildings text-2xl text-primary mr-3'></i>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800">{{ role_info.workspace_name }}</h3>
+                                    <p class="text-sm text-gray-500">Joined {{ role_info.joined_at.strftime('%B %d, %Y') if role_info.joined_at else 'N/A' }}</p>
+                                </div>
+                            </div>
+
+                            <!-- Role Badge -->
+                            <div class="flex items-center mb-4">
+                                <span class="role-badge
+                                    {% if role_info.role == 'ADMIN' %}bg-red-100 text-red-800 border-red-200
+                                    {% elif role_info.role == 'TEACHER' %}bg-blue-100 text-blue-800 border-blue-200
+                                    {% elif role_info.role == 'DELEGATE' %}bg-yellow-100 text-yellow-800 border-yellow-200
+                                    {% else %}bg-green-100 text-green-800 border-green-200{% endif %}
+                                    px-3 py-1 rounded-full text-sm font-medium border">
+                                    {{ role_info.role.title() }}
+                                </span>
+                                {% if role_info.can_manage %}
+                                <span class="ml-2 bg-purple-100 text-purple-800 border-purple-200 px-3 py-1 rounded-full text-xs font-medium border">
+                                    Management Access
+                                </span>
+                                {% endif %}
+                            </div>
+
+                            <!-- Role Permissions -->
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-gray-800 mb-2">Permissions in this workspace:</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                                    {% if role_info.role == 'ADMIN' %}
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Full workspace management
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            User management
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Create/edit objectives
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            View all reports
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Send announcements
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Manage workspace settings
+                                        </div>
+                                    {% elif role_info.role == 'TEACHER' %}
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Create/edit objectives
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            View student progress
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Send announcements
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Manage assigned students
+                                        </div>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class='bx bx-x-circle mr-2'></i>
+                                            User management (limited)
+                                        </div>
+                                    {% elif role_info.role == 'DELEGATE' %}
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            View objectives
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Submit progress updates
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Access team resources
+                                        </div>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class='bx bx-x-circle mr-2'></i>
+                                            Create objectives
+                                        </div>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class='bx bx-x-circle mr-2'></i>
+                                            User management
+                                        </div>
+                                    {% else %}
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            View assigned objectives
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Submit updates
+                                        </div>
+                                        <div class="flex items-center text-green-700">
+                                            <i class='bx bx-check-circle mr-2'></i>
+                                            Access basic resources
+                                        </div>
+                                        <div class="flex items-center text-gray-500">
+                                            <i class='bx bx-x-circle mr-2'></i>
+                                            Management functions
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Role Information Legend -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mt-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Role Definitions</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="border-l-4 border-red-500 pl-4">
+                        <h4 class="font-semibold text-red-700">Admin</h4>
+                        <p class="text-sm text-gray-600">Full control over workspace settings, user management, and all features.</p>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h4 class="font-semibold text-blue-700">Teacher</h4>
+                        <p class="text-sm text-gray-600">Can create objectives, manage students, and access teaching tools.</p>
+                    </div>
+                    <div class="border-l-4 border-yellow-500 pl-4">
+                        <h4 class="font-semibold text-yellow-700">Delegate</h4>
+                        <p class="text-sm text-gray-600">Enhanced member privileges with additional access to team resources.</p>
+                    </div>
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <h4 class="font-semibold text-green-700">Member</h4>
+                        <p class="text-sm text-gray-600">Basic access to view objectives and submit progress updates.</p>
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+            <!-- No Roles Found -->
+            <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                <i class='bx bx-user-x text-6xl text-gray-400 mb-4'></i>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-2">No Active Roles Found</h2>
+                <p class="text-gray-600 mb-6">You don't currently have any active roles in any workspaces.</p>
+                <a href="{{ url_for('workspace.join') if url_for('workspace.join') else '#' }}"
+                   class="bg-primary hover:bg-primary-dark text-white font-medium px-6 py-2 rounded-md transition">
+                    Join a Workspace
+                </a>
+            </div>
+        {% endif %}
+
+        <!-- Back to Profile Button -->
+        <div class="mt-8 text-center">
+            <a href="{{ url_for('common.profile.profile') }}"
+               class="inline-flex items-center bg-gray-600 hover:bg-gray-700 text-white font-medium px-6 py-2 rounded-md transition">
+                <i class='bx bx-arrow-back mr-2'></i>
+                Back to Profile
+            </a>
+        </div>
+    </main>
+</body>
+</html>

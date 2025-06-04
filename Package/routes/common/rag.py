@@ -24,7 +24,7 @@ def retrieve_context(query, k=2):
     top_docs = [docs[i] for i in top_indices]
     return "\n".join(top_docs)
 
-GEMENI_API_KEY = "AIzaSyBD41l5Xlsz8bm1GAW780uqIukxki7tMcI"
+GEMENI_API_KEY = "#" #you must insert your api key here
 
 chat_history = []
 @bp.route("/chat", methods=["POST"])

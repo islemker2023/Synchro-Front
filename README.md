@@ -1,17 +1,17 @@
-# 📚 Synchro – Smart Workspace Management for Educators
+# Synchro – Smart Workspace Management for Educators
 
-**Synchro** is a collaborative web platform designed to streamline communication and progress tracking between **Admins**, **Teachers**, and **Delegates** within academic institutions. The platform helps educational teams stay synchronized with lectures, assignments, progress reports, and shared materials in one unified space.
+**Synchro is a collaborative web platform designed to streamline communication and progress tracking between **Admins**, **Teachers**, and **Delegates** within academic institutions. The platform helps educational teams stay synchronized with lectures, assignments, progress reports, and shared materials in one unified space.
 
 ---
 
-## 🚀 Features
+Features
 
-### 👤 Role-Based Access
+Role-Based Access
 - **Admin**: Manage workspaces, assign semester objectives, monitor teacher progress, and post notices.
 - **Teacher**: Upload course content, track teaching progress, assign tasks via Google Forms, and communicate with others.
 - **Delegate**: Access course materials, receive updates/notices, view schedules, and communicate with teachers.
 
-### 📂 Core Functionalities
+Core Functionalities
 - Workspace creation and management
 - Objective tracking with analytics
 - Google Forms integration for assignments
@@ -21,9 +21,9 @@
 
 ---
 
-## 🛠️ Tech Stack
+Tech Stack
 
-### 🧠 Backend
+Backend
 - **Flask** (Python)
 - **SQLAlchemy** (ORM)
 - **PostgreSQL** (Database)
@@ -31,26 +31,26 @@
 - **OAuth 2.0** (Authentication)
 - **Docker** (Containerization)
 
-### 🎨 Frontend
+Frontend
 - **HTML/CSS/JavaScript**
 - **TailwindCSS** (UI Styling)
 - **Vanilla JS** + custom components
 
-### 📊 AI Integration (Upcoming)
+AI Integration (Upcoming)
 - **RAG (Retrieval-Augmented Generation)** for smart help/chatbot
 - **Gemini API** integration for dynamic user assistance
 
 ---
 
-### 📈 State of Progress
-- ✅ Database schema completed
-- ✅ Role-based authentication and OAuth
-- ✅ Gmail messaging system integrated
-- ✅ Frontend: Login, Signup, Dashboard, Messaging, and Profile
-- 🛠️ In progress: AI chatbot (Gemini + RAG), Admin analytics, UI polish
-- 📅 Next milestone: Final presentation and deployment
+State of Progress
+- Database schema completed
+- Role-based authentication and OAuth
+- Gmail messaging system integrated
+- Frontend: Login, Signup, Dashboard, Messaging, and Profile
+- In progress: AI chatbot (Gemini + RAG), Admin analytics, UI polish
+- Next milestone: Final presentation and deployment
 
-### 💬 Team Synchro
+Team Synchro
 - Project Leader: Okba
 - Frontend: Ahmed, Islem, Mahdi
 - Backend: Moncef, Oussama
